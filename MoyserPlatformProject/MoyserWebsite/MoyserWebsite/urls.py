@@ -22,8 +22,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/',include("main_app.urls")),
-    path('assistant/',include("assistant_app.urls")),
-    path('service/',include("service_request_app.urls")),
-    path('user/',include("user_management_app.urls")),
-    path('booking/',include("payment_booking_app.urls")),
+    path('account/',include("account_app_app.urls")),
+    path('dashboard/',include("dashboard_app.urls")),
+    path('booking/',include("booking_app.urls")),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
