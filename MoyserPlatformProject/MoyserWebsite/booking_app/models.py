@@ -11,7 +11,7 @@ STATUS_CHOICES = [
 class Booking(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    companion = models.ForeignKey(User, on_delete=models.CASCADE, related_name="companions")
+    companion = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings_as_companion")
     booking_date_time = models.DateTimeField()
     address = models.CharField(max_length=255)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="PENDING")
