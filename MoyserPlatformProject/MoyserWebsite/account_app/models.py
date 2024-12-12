@@ -75,7 +75,7 @@ class DisabilityUser(models.Model):
     phone_number = models.CharField(max_length=15)
     disability_type = models.CharField(max_length=2, choices=DISABILITY_TYPE_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    age = models.IntegerField()
+    age = models.IntegerField(null=True)
     address = models.CharField(max_length=255)
 
     def __str__(self):
