@@ -68,7 +68,7 @@ class CompanionUser(models.Model):
     availability = models.BooleanField(default=True)
     companion = models.OneToOneField(User, on_delete=models.CASCADE, related_name="companion_user")
     hour_rent = models.FloatField()
-    skills = models.ManyToManyField("Skill", related_name="companions")
+    skills = models.ManyToManyField("Skill")
     city = models.CharField(max_length=100, choices=CITIES_IN_SAUDI)
     certification = models.FileField(upload_to="certifications/")
     phone_number = models.CharField(max_length=15)
@@ -79,8 +79,8 @@ class CompanionUser(models.Model):
         return f"{self.user.username} - {self.city}"
     
     
-    class Skill(models.Model):
-        name = models.CharField(max_length=100)
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
