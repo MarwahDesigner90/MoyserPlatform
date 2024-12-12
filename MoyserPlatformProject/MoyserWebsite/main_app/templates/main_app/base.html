@@ -4,99 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Blogger</title>
-    <!-- component -->
+    <title>Base page</title>
+
 <!-- Header -->
-<header>
-    <!-- navbar and menu -->
-    <nav class="shadow">
-  
-    <div class="flex justify-between items-center py-6 px-10 container mx-auto">
-  
-      <div>
-        <h1 class="text-2xl font-bold bg-gradient-to-tr from-indigo-600 to-green-600 bg-clip-text text-transparent hover:cursor-pointer">Adsla</h1>
-      </div>
-  
-      <div>
-        
-        <div class="hover:cursor-pointer sm:hidden">
-          <spnan class="h-1 rounded-full block w-8 mb-1 bg-gradient-to-tr from-indigo-600 to-green-600"></spnan>
-          <spnan class="h-1 rounded-full block w-8 mb-1 bg-gradient-to-tr from-indigo-600 to-green-600"></spnan>
-          <spnan class="h-1 rounded-full block w-8 mb-1 bg-gradient-to-tr from-indigo-600 to-green-600"></spnan>
-        </div>
-        <div class="flex items-center">
-  
-          <ul class="sm:flex space-x-4 hidden items-center">
-            <li><a href="#" class="text-gray-700 hover:text-indigo-600 text-md ">Home</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-indigo-600 text-md ">About</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-indigo-600 text-md ">Services</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-indigo-600 text-md ">Products</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-indigo-600 text-md ">Contact</a></li>
-          </ul>
-  
-          <div class="md:flex items-center hidden space-x-4 ml-8 lg:ml-12">
-            <h1 class="text-text-gray-600  py-2 hover:cursor-pointer hover:text-indigo-600">LOGIN</h1>
-            <h1 class="text-text-gray-600  py-2 hover:cursor-pointer px-4 rounded text-white bg-gradient-to-tr from-indigo-600 to-green-600 hover:shadow-lg">SIGNUP</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-    </nav>
-  </header>
-  <main>
-    <!-- section hero -->
-    <section>
-      <div class="bg-gray-100 sm:grid grid-cols-5 grid-rows-2 px-4 py-6 min-h-full lg:min-h-screen space-y-6 sm:space-y-0 sm:gap-4">
-  
-      <div class="h-96 col-span-4 bg-gradient-to-tr from-indigo-800 to-indigo-500 rounded-md flex items-center">
-        <div class="ml-20 w-80">
-        <h2 class="text-white text-4xl">Adsla</h2>
-        <p class="text-indigo-100 mt-4 capitalize font-thin tracking-wider leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, dolore?</p>
-  
-        <a href="#" class="uppercase inline-block mt-8 text-sm bg-white py-2 px-4 rounded font-semibold hover:bg-indigo-100">get start</a>
-        </div>
-  
-      </div>
-      <div class="h-96 col-span-1 ">
-        <div class="bg-white py-3 px-4 rounded-lg flex justify-around items-center ">
-     <input type="text" placeholder="seach" class=" bg-gray-100 rounded-md  outline-none pl-2 ring-indigo-700 w-full mr-2 p-2">
-    <span><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor ">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-  </svg></span>
-        </div>
-        <div class="bg-white  rounded-md">
-  
-        <h1 class="text-center text-xl my-4  bg-white py-2 rounded-md border-b-2 cursor-pointer  text-gray-600">Service</h1>
-        <div class="bg-white rounded-md list-none  text-center ">
-          <li class="py-3 border-b-2"><a href="#" class="list-none  hover:text-indigo-600">Products</a></li>
-          <li class="py-3 border-b-2"><a href="#" class="list-none  hover:text-indigo-600">Models</a></li>
-          <li class="py-3 border-b-2"><a href="#" class="list-none  hover:text-indigo-600">Pricing</a></li>
-          <li class="py-3 border-b-2"><a href="#" class="list-none  hover:text-indigo-600">Hire</a></li>
-          <li class="py-3 "><a href="#" class="list-none border-b-2 hover:text-indigo-600">Business</a></li>
-        </div>
-        </div>
-      </div>
-      </div>
-  
-    </section>
-  
-  </main>
-    <main class="container mx-auto p-4">
+<!-- component -->
+<body>
+
+	<nav class="relative px-4 py-4 flex justify-between items-center bg-white">
+		<a class="text-3xl font-bold leading-none" href="#">
+      <img src="{% static 'images/MoyserLogo.png' %}" alt="logo" class="h-20 w-35" />
+		</a>
+		<div class="lg:hidden">
+			<button class="navbar-burger flex items-center text-blue-600 p-3">
+				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<title>Mobile menu</title>
+					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+				</svg>
+			</button>
+		</div>
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+			<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="#">Home</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			<li><a class="text-sm text-sky-600 font-bold" href="#">Find Companion</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			<li><a class="text-sm text-gray-400 font-bold hover:text-sky-600" href="#">My Booking</a></li>
+			<li class="text-gray-300">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+				</svg>
+			</li>
+			
+		
+			<li><a class="text-sm text-gray-400  font-bold hover:text-sky-600" href="#">Contact</a></li>
+		</ul>
+		<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-sky-700 text-white  text-sm  font-bold  rounded-xl transition duration-200" href="#">Sign In</a>
+		<a class="hidden lg:inline-block py-2 px-6 bg-sky-700 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="#">Sign up</a>
+	</nav>
+	<div class="relative overflow-hidden ">
+		<div aria-hidden="true" class="flex absolute -top-96 start-1/2 transform -translate-x-1/2">
+	
+			<div class="bg-gradient-to-tl from-sky-100 via-sky-200 to-sky-100 blur-3xl w-[90rem] h-[50rem] rounded-full origin-top-left -rotate-12 -translate-x-[15rem]"></div>
+		</div>
+	
+		<div class="relative z-10">
+			<div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+				<div class="max-w-2xl text-center mx-auto">
+	
+	<div class="navbar-menu relative z-50 hidden">
+		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+			<div class="flex items-center mb-8">
+				<a class="mr-auto text-3xl font-bold leading-none" href="#">
+          <img src="{% static 'images/MoyserLogo.png' %}" alt="logo" class="h-20 w-35" />
+				</a>
+				<button class="navbar-close">
+					<svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+			<div>
+				<ul>
+					<li class="mb-1">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-sky-50 hover:text-sky-600 rounded" href="#">Home</a>
+					</li>
+					<li class="mb-1">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-sky-50 hover:text-sky-600 rounded" href="#">Find Companion</a>
+					</li>
+					<li class="mb-1">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-sky-50 hover:text-sky-600 rounded" href="#">My Booking </a>
+					</li>
+					<li class="mb-1">
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-sky-50 hover:text-sky-600 rounded" href="#">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mt-auto">
+				<div class="pt-6">
+					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center text-white font-semibold leading-none bg-sky-800 hover:bg-sky-700 rounded-xl" href="#">Sign in</a>
+					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold leading-none bg-sky-800 hover:bg-sky-700  rounded-xl" href="#">Sign Up</a>
+				</div>
+				<p class="my-4 text-xs text-center text-gray-600">
+					<span>Authored by Moyser 2024</span>
+				</p>
+			</div>
+		</nav>
+	</div>
+
+	
+
+<script>
+// Burger menus
+document.addEventListener('DOMContentLoaded', function() {
+    // open
+    const burger = document.querySelectorAll('.navbar-burger');
+    const menu = document.querySelectorAll('.navbar-menu');
+
+    if (burger.length && menu.length) {
+        for (var i = 0; i < burger.length; i++) {
+            burger[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+
+    // close
+    const close = document.querySelectorAll('.navbar-close');
+    const backdrop = document.querySelectorAll('.navbar-backdrop');
+
+    if (close.length) {
+        for (var i = 0; i < close.length; i++) {
+            close[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+
+    if (backdrop.length) {
+        for (var i = 0; i < backdrop.length; i++) {
+            backdrop[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+});
+</script>
+
     {% block content %}
+	
 
     {% endblock %}
-    </main>
-    
-    <footer class="mt-5 p-4 text-center text-white bg-gradient-to-r from-sky-600 to-sky-900">
-        &copy; Author by Marwah Al-Ahmed 2024 Blogger
+</div>
+</div>
+</div>
+</div>
+	</body>
+
+    <footer class="mt-5 p-4 text-center text-white bg-sky-600">
+        &copy; Authored by Moyser 2024
     </footer>
 </body>
-
-
 </html>
