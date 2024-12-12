@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here. 
 
 class Skill(models.Model):
@@ -40,7 +41,6 @@ class Companion(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField()
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     hour_rent = models.FloatField()
@@ -54,8 +54,7 @@ class Companion(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.city}"
     
-    from django.db import models
-from django.contrib.auth.models import User
+
 
 class DisabilityUser(models.Model):
     DISABILITY_TYPE_CHOICES = [
@@ -71,7 +70,7 @@ class DisabilityUser(models.Model):
         ('F', 'Female'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Linking to the User model
+    user = models.OneToOneField(User, on_delete=models.CASCADE) 
     phone_number = models.CharField(max_length=15)
     disability_type = models.CharField(max_length=2, choices=DISABILITY_TYPE_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
@@ -79,4 +78,4 @@ class DisabilityUser(models.Model):
     address = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.user.username  # Displays the username of the linked User
+        return self.user.username 

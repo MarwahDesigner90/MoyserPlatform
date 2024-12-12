@@ -21,7 +21,7 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/',include("main_app.urls")),
+    path('',include("main_app.urls")),
     path('account/',include("account_app.urls")),
     path('booking/',include("booking_app.urls")),
     path('dashboard/',include("dashboard_app.urls")),
