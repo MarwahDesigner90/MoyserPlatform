@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Booking
-from account_app.models import CompanionUser
+from account_app.models import Companion
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -67,7 +67,7 @@ def companion_list_view(request):
     View to list all available companions.
     Users can select a companion to book from this list.
     """
-    companions = CompanionUser.objects.filter(availability=True)
+    companions = Companion.objects.filter(availability=True)
     return render(request, 'booking_app/companion_list.html', {'companions': companions})
 
 
