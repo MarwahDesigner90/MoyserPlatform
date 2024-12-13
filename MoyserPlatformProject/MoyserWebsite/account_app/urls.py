@@ -9,5 +9,6 @@ urlpatterns = [
     path("profile/companion/edit/", views.edit_companion_profile_view, name="edit_companion_profile_view"),
     path("profile/companion/", views.profile_companion_view, name="profile_companion_view"),
     path("signup/companion/", views.sign_up_companion_view, name="sign_up_companion_view"),
-    path("sign-in/", views.sign_in_user_view, name="sign_in_user_view"),  # Ensure this exists
+    path("profile/beneficiary/edit/", views.edit_beneficiary_profile_view, name="edit_beneficiary_profile_view"),  
+    path("sign-in/", views.sign_in_user_view, name="sign_in_user_view"), 
 ]
