@@ -39,7 +39,7 @@ class Companion(models.Model):
         ('City20', 'Qassim'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    Companion = models.OneToOneField(User, on_delete=models.CASCADE, related_name="companion_user")
     bio = models.TextField()
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
