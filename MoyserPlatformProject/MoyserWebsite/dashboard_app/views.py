@@ -1,15 +1,20 @@
-from django.shortcuts import render
-from django.http import HttpRequest , HttpResponse
-# Create your views here.
-def admin_dashboard_view(request:HttpRequest):
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
 
-    return render(request,"dashboard_app/admin_dashboard.html")
+def is_admin(user):
+    return user.is_superuser
 
-def monitor_history_beneficiary_view(request:HttpRequest):
+@login_required
+@user_passes_test(is_admin)
+def admin_dashboard_view(request):
+    return render(request, "dashboard_app/admin_dashboard.html")
 
-    return render(request,"dashboard_app/monitor_history_beneficiary.html")
+@login_required
+@user_passes_test(is_admin)
+def monitor_beneficiary_dashboard_view(request):
+    return render(request, "dashboard_app/beneficiary_dashboard.html")
 
-def feedback_view(request:HttpRequest):
-
-    return render(request,"dashboard_app/feedback.html")
-
+@login_required
+@user_passes_test(is_admin)
+def monitor_companion_dashboard_view(request):
+    return render(request, "dashboard_app/companion_dashboard.html")

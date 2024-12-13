@@ -100,27 +100,27 @@ def sign_up_companion_view(request: HttpRequest):
     return render(request, "account_app/sign_up_companion.html", {"skills": skills})
 
 
-# Sign In for Both Roles
-def sign_in_user_view(request: HttpRequest):
+# Sign In for all
+def sign_in_user_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
 
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if user.role == "companion":
+            if user.is_superuser:
+                return redirect("dashboard_app:admin_dashboard")  # Redirect admins to their dashboard
+            elif user.role == "companion":
                 return redirect("account_app:profile_companion_view")
             elif user.role == "beneficiary":
                 return redirect("account_app:profile_beneficiary_view")
             else:
-                return redirect("home")  # Default redirect
+                return redirect("home")  # Default redirect for other roles
         else:
             messages.error(request, "Invalid username or password")
             return render(request, "account_app/sign_in_user.html")
-
     return render(request, "account_app/sign_in_user.html")
-
 
 # Edit Profile for Companion
 from django.shortcuts import render, get_object_or_404, redirect
