@@ -4,6 +4,21 @@ from django.contrib.auth.models import User
 
 # Create your models here. 
 
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    ROLE_CHOICES = [
+        ('companion', 'Companion'),
+        ('beneficiary', 'Beneficiary'),
+    ]
+    role = models.CharField(max_length=15, choices=ROLE_CHOICES, default='beneficiary')
+
+    def __str__(self):
+        return self.username
+
+
+
+
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
