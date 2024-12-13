@@ -1,0 +1,31 @@
+<!-- companion_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Companions</title>
+    
+</head>
+<body>
+    <h1>Available Companions</h1>
+
+    <div class="companion-container">
+        {% for companion in companions %}
+            <div class="companion-card">
+                <h3>{{ companion.companion.username }}</h3>
+                <p><strong>City:</strong> {{ companion.city }}</p>
+                <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
+                <p><strong>Age:</strong> {{ companion.age }}</p>
+                <p><strong>Gender:</strong> {{ companion.get_gender_display }}</p>
+                
+                <!-- Book Button -->
+                <a href="{% url 'booking_app:book_companion' companion.id %}">
+                    <button>Book this Companion</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

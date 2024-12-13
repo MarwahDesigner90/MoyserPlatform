@@ -2,24 +2,21 @@
 {% load static %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
+<!-- Title -->
+<div class="mt-5 max-w-2xl">
+  <h1 class="block font-semibold text-gray-800 text-3xl md:text-5xl lg:text-6xl">
+   Welcome to Moyser, your premier platform for accessible support.
+   </h1>
+    <p class="mt-4 text-lg text-gray-600">
+      We connect individuals with disabilities to qualified companions, ensuring a seamless experience in public spaces.
+      </p>
+ </div>
 
-
-
-                <!-- Title -->
-                <div class="mt-5 max-w-2xl">
-                    <h1 class="block font-semibold text-gray-800 text-3xl md:text-5xl lg:text-6xl">
-                        Welcome to Moyser, your premier platform for accessible support.
-                    </h1>
-                    <p class="mt-4 text-lg text-gray-600">
-                        We connect individuals with disabilities to qualified companions, ensuring a seamless experience in public spaces.
-                    </p>
-                </div>
-
-                <!-- Filter Engine -->
-                <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
-                    <h2 class="text-2xl font-semibold text-white ">Find Your Companion</h2>
-                    <form class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
-                        <select name="city" class="border rounded-lg p-2">
+  <!-- Filter Engine -->
+  <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
+   <h2 class="text-2xl font-semibold text-white ">Find Your Companion</h2>
+      <form class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
+          <select name="city" class="border rounded-lg p-2">
                             <option value="" disabled selected>Select City</option>
                             <option value="Riyadh">Riyadh</option>
                             <option value="Jeddah">Jeddah</option>
@@ -59,72 +56,8 @@
 
 <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
 
-<script type="module">
-  import KeenSlider from 'https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/+esm'
 
-  const keenSliderActive = document.getElementById('keen-slider-active')
-  const keenSliderCount = document.getElementById('keen-slider-count')
-
-  const keenSlider = new KeenSlider(
-    '#keen-slider',
-    {
-      loop: true,
-      defaultAnimation: {
-        duration: 750,
-      },
-      slides: {
-        origin: 'center',
-        perView: 1,
-        spacing: 16,
-      },
-      breakpoints: {
-        '(min-width: 640px)': {
-          slides: {
-            origin: 'center',
-            perView: 1.5,
-            spacing: 16,
-          },
-        },
-        '(min-width: 768px)': {
-          slides: {
-            origin: 'center',
-            perView: 1.75,
-            spacing: 16,
-          },
-        },
-        '(min-width: 1024px)': {
-          slides: {
-            origin: 'center',
-            perView: 3,
-            spacing: 16,
-          },
-        },
-      },
-      created(slider) {
-        slider.slides[slider.track.details.rel].classList.remove('opacity-40')
-
-        keenSliderActive.innerText = slider.track.details.rel + 1
-        keenSliderCount.innerText = slider.slides.length
-      },
-      slideChanged(slider) {
-        slider.slides.forEach((slide) => slide.classList.add('opacity-40'))
-
-        slider.slides[slider.track.details.rel].classList.remove('opacity-40')
-
-        keenSliderActive.innerText = slider.track.details.rel + 1
-      },
-    },
-    []
-  )
-
-  const keenSliderPrevious = document.getElementById('keen-slider-previous')
-  const keenSliderNext = document.getElementById('keen-slider-next')
-
-  keenSliderPrevious.addEventListener('click', () => keenSlider.prev())
-  keenSliderNext.addEventListener('click', () => keenSlider.next())
-</script>
-
-<section class="bg-white">
+<section class="bg-white mt-10 ">
   <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
     <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
       Read trusted reviews from our customers
@@ -481,5 +414,70 @@
     </div>
   </div>
 </section>
+
+<script type="module">
+  import KeenSlider from 'https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/+esm'
+
+  const keenSliderActive = document.getElementById('keen-slider-active')
+  const keenSliderCount = document.getElementById('keen-slider-count')
+
+  const keenSlider = new KeenSlider(
+    '#keen-slider',
+    {
+      loop: true,
+      defaultAnimation: {
+        duration: 750,
+      },
+      slides: {
+        origin: 'center',
+        perView: 1,
+        spacing: 16,
+      },
+      breakpoints: {
+        '(min-width: 640px)': {
+          slides: {
+            origin: 'center',
+            perView: 1.5,
+            spacing: 16,
+          },
+        },
+        '(min-width: 768px)': {
+          slides: {
+            origin: 'center',
+            perView: 1.75,
+            spacing: 16,
+          },
+        },
+        '(min-width: 1024px)': {
+          slides: {
+            origin: 'center',
+            perView: 3,
+            spacing: 16,
+          },
+        },
+      },
+      created(slider) {
+        slider.slides[slider.track.details.rel].classList.remove('opacity-40')
+
+        keenSliderActive.innerText = slider.track.details.rel + 1
+        keenSliderCount.innerText = slider.slides.length
+      },
+      slideChanged(slider) {
+        slider.slides.forEach((slide) => slide.classList.add('opacity-40'))
+
+        slider.slides[slider.track.details.rel].classList.remove('opacity-40')
+
+        keenSliderActive.innerText = slider.track.details.rel + 1
+      },
+    },
+    []
+  )
+
+  const keenSliderPrevious = document.getElementById('keen-slider-previous')
+  const keenSliderNext = document.getElementById('keen-slider-next')
+
+  keenSliderPrevious.addEventListener('click', () => keenSlider.prev())
+  keenSliderNext.addEventListener('click', () => keenSlider.next())
+</script>
 
 {% endblock %}

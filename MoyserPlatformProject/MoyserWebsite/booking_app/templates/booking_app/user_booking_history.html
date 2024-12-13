@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+</head>
+<body>
+    <h1>My Booking History</h1>
+
+    {% if user_bookings %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Companion</th>
+                    <th>Booking Date & Time</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in user_bookings %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ booking.companion.username }}</td>
+                    <td>{{ booking.booking_date_time }}</td>
+                    <td>{{ booking.address }}</td>
+                    <td>{{ booking.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No bookings found.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'booking_app:companion_list' %}">Back to Companion List</a>
+</body>
+</html>
