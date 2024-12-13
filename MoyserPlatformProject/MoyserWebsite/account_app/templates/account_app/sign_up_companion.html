@@ -1,7 +1,97 @@
 {% extends "main_app/base.html" %}
 {% load static %}
-{% block title %}Sign Up Companion Page{% endblock %}
+{% block title %}Sign Up as a Companion{% endblock %}
 {% block content %}
 
+<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6">
+        <img class="w-32 h-auto mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
+        <span class="text-2xl font-semibold text-gray-900 dark:text-white"></span>
+    </a>
+    <div class="w-[900px] h-[700px] bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Sign up as a Companion
+            </h1>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">User Name</label>
+                        <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Username" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Password</label>
+                        <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Password" required>
+                    </div>
+                    <div>
+                        <label for="full_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Full Name</label>
+                        <input type="text" name="full_name" id="full_name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Full Name" required>
+                    </div>
+                    <div>
+                        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Gender</label>
+                        <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Age</label>
+                        <input type="number" name="age" id="age" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Age" required>
+                    </div>
+                    <div>
+                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Phone Number</label>
+                        <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Phone Number" required>
+                    </div>
+                    <div>
+                        <label for="bank_account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Bank Account</label>
+                        <input type="text" name="bank_account" id="bank_account" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Bank Account" required>
+                    </div>
+                    <div>
+                        <label for="hour_rent" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Rent for an Hour</label>
+                        <input type="text" name="hour_rent" id="hour_rent" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rent for an hour" required>
+                    </div>
+                    <div>
+                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">City</label>
+                        <select name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="Riyadh">Riyadh</option>
+                            <option value="Al-kharj">Al-kharj</option>
+                            <option value="Al-majmaah">Al-majmaah</option>
+                            <option value="Afif">Afif</option>
+                            <option value="Jeddah">Jeddah</option>
+                            <option value="Makkah">Makkah</option>
+                            <option value="Al-Taif">Al-Taif</option>
+                            <option value="Rabigh">Rabigh</option>
+                            <option value="Al-Madinah">Al-Madinah</option>
+                            <option value="Dammam">Dammam</option>
+                            <option value="Al-Ahsa">Al-Ahsa</option>
+                            <option value="Jizan">Jizan</option>
+                            <option value="Najran">Najran</option>
+                            <option value="Al-jawf">Al-jawf</option>
+                            <option value="Abha">Abha</option>
+                            <option value="Bisha">Bisha</option>
+                            <option value="Tabuk">Tabuk</option>
+                            <option value="Hail">Hail</option>
+                            <option value="Qassim">Qassim</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Skills</label>
+                        <input type="text" name="skills" id="skills" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Skills" required>
+                    </div>
+                    <div>
+                        <label for="certification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Certification (PDF)</label>
+                        <input type="file" name="certification" id="certification" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" accept=".pdf">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-4">Sign Up</button>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-4">
+                    Already have an account? <a href="{% url 'account_app:sign_in_user_view' %}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

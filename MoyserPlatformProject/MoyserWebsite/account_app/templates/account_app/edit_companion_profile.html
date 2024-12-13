@@ -1,0 +1,59 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Edit Companion Profile{% endblock %}
+{% block content %}
+
+<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6">
+        <img class="w-32 h-auto mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
+        <span class="text-2xl font-semibold text-gray-900 dark:text-white">Moyser</span>
+    </a>
+    <div class="w-[900px] bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Edit Profile
+            </h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                        <input type="text" name="phone_number" id="phone_number" value="{{ companion.phone_number }}" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                        <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                            <option value="M" {% if companion.gender == "M" %}selected{% endif %}>Male</option>
+                            <option value="F" {% if companion.gender == "F" %}selected{% endif %}>Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+                        <input type="number" name="age" id="age" value="{{ companion.age }}" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label for="hour_rent" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hourly Rent</label>
+                        <input type="number" name="hour_rent" id="hour_rent" value="{{ companion.hour_rent }}" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                        <input type="text" name="city" id="city" value="{{ companion.city }}" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skills</label>
+                        <select name="skills" id="skills" multiple class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                            {% for skill in skills %}
+                            <option value="{{ skill.id }}" {% if skill in companion.skills.all %}selected{% endif %}>{{ skill.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4">
+                    Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
