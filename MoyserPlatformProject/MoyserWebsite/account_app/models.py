@@ -17,8 +17,6 @@ class User(AbstractUser):
         return self.username
 
 
-
-
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
@@ -69,8 +67,6 @@ class Companion(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.city}"
     
-
-
 class DisabilityUser(models.Model):
     DISABILITY_TYPE_CHOICES = [
         ('VI', 'Visually Impaired'),
