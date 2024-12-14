@@ -4,7 +4,6 @@ from django.conf import settings  # Import settings for AUTH_USER_MODEL
 STATUS_CHOICES = [
     ("PENDING", "Pending"),
     ("CONFIRMED", "Confirmed"),
-    ("CANCELLED", "Cancelled"),
     ("COMPLETED", "Completed"),
 ]
 

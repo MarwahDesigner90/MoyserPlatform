@@ -122,11 +122,6 @@ def sign_in_user_view(request):
             return render(request, "account_app/sign_in_user.html")
     return render(request, "account_app/sign_in_user.html")
 
-# Edit Profile for Companion
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import Companion, Skill
 
 @login_required
 def edit_companion_profile_view(request):
