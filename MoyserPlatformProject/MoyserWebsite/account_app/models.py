@@ -55,7 +55,7 @@ class Companion(models.Model):
         ('City20', 'Qassim'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    companion = models.OneToOneField(User, on_delete=models.CASCADE , related_name= "compinon_user")
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     hour_rent = models.FloatField()
