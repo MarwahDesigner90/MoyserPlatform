@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Companion, DisabilityUser, Skill
+from .models import User, Companion, DisabilityUser
 
 class CustomUserAdmin(UserAdmin):
     model = User
@@ -33,6 +33,3 @@ class DisabilityUserAdmin(admin.ModelAdmin):
     list_display = ('user', 'disability_type', 'age', 'gender')
     list_filter = ('disability_type', 'gender')
 
-@admin.register(Skill)
-class SkillAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')

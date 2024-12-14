@@ -1,10 +1,10 @@
-from . import views 
 from django.urls import path
+from . import views
 
-app_name = 'dashboard_app'
+app_name = "dashboard_app"
 
-urlpatterns = [ 
-    path("monitor/beneficiary/",views.monitor_history_beneficiary_view , name="monitor_history_beneficiary_view"),
-    path("admin/dashboard/",views.admin_dashboard_view,name="admin_dashboard_view"),
-    path("feedback/",views.feedback_view, name="feedback_view"),
+urlpatterns = [
+    path("dashboard/admin/", views.admin_dashboard_view, name="admin_dashboard"),
+    path("dashboard/admin/beneficiary/", views.monitor_beneficiary_dashboard_view, name="beneficiary_dashboard"),
+    path("dashboard/admin/companion/", views.monitor_companion_dashboard_view, name="companion_dashboard"),
 ]

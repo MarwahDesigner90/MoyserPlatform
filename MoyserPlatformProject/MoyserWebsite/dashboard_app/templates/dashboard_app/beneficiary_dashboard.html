@@ -1,0 +1,85 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Monitor Beneficiaries{% endblock %}
+{% block content %}
+
+<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <img class="w-32 h-32 mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
+        Moyser
+    </a>
+    <div class="w-full max-w-[800px] bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-8 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white">
+                Monitor Beneficiaries
+            </h1>
+            <div class="space-y-4">
+                <p class="text-gray-700 dark:text-gray-300">
+                    Monitor all the beneficiary activities, including their account details and recent interactions.
+                </p>
+                <div class="mt-4">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Beneficiary Summary</h2>
+                    <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300">
+                        <li>Total Beneficiaries: <strong>150</strong></li>
+                        <li>Active Beneficiaries: <strong>140</strong></li>
+                        <li>Inactive Beneficiaries: <strong>10</strong></li>
+                    </ul>
+                </div>
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Beneficiary Statistics</h2>
+                    <canvas id="beneficiaryChart" class="w-full h-[300px] mt-4"></canvas>
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activities</h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Feature coming soon...</p>
+                </div>
+            </div>
+            <div class="mt-6">
+                <a href="{% url 'dashboard_app:admin_dashboard' %}" 
+                   class="block w-full text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-700 dark:hover:bg-sky-800 dark:focus:ring-sky-900 shadow-lg transform transition duration-300 hover:scale-105">
+                    Back to Admin Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('beneficiaryChart').getContext('2d');
+    const beneficiaryChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Active Beneficiaries', 'Inactive Beneficiaries'],
+            datasets: [{
+                label: 'Beneficiary Statistics',
+                data: [140, 10],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 99, 132, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: 'rgba(0, 0, 0, 0.8)'
+                    }
+                },
+                tooltip: {
+                    enabled: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}
