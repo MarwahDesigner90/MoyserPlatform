@@ -66,7 +66,7 @@ class Companion(models.Model):
     age = models.IntegerField()
 
     def __str__(self):
-        return f"{self.user.username} - {self.city}"
+        return f"{self.companion.username} - {self.city}"
     
 class DisabilityUser(models.Model):
     DISABILITY_TYPE_CHOICES = [

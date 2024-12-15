@@ -67,7 +67,6 @@ def sign_up_companion_view(request: HttpRequest):
 
         password = request.POST.get("password")
         bank_account = request.POST.get("bank_account")
-        availability = request.POST.get("availability") == "on"
         hour_rent = request.POST.get("hour_rent")
         skills = request.POST.getlist("skills")
         city = request.POST.get("city")
@@ -134,6 +133,7 @@ def edit_companion_profile_view(request):
         companion.phone_number = request.POST.get("phone_number")
         companion.gender = request.POST.get("gender")
         companion.age = request.POST.get("age")
+        availability = request.POST.get("availability") 
         companion.hour_rent = request.POST.get("hour_rent")
         companion.city = request.POST.get("city")
         skills = request.POST.getlist("skills")  # Get selected skills
