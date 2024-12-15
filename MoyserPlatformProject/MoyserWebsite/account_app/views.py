@@ -18,13 +18,13 @@ def profile_beneficiary_view(request: HttpRequest):
 # Sign Up for Beneficiary
 def sign_up_beneficiary_view(request: HttpRequest):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        phone_number = request.POST.get("phone_number")
-        disability_type = request.POST.get("disability_type")
-        gender = request.POST.get("gender")
-        age = request.POST.get("age")
-        address = request.POST.get("address")
+        username = request.POST["username"]
+        password = request.POST["password"]
+        phone_number = request.POST["phone_number"]
+        disability_type = request.POST["disability_type"]
+        gender = request.POST["gender"]
+        age = request.POST["age"]
+        address = request.POST["address"]
 
         try:
             user = User.objects.create_user(username=username, password=password, role="beneficiary")
@@ -152,11 +152,11 @@ def edit_companion_profile_view(request):
 def edit_beneficiary_profile_view(request: HttpRequest):
     disability_user = get_object_or_404(DisabilityUser, user=request.user)
     if request.method == "POST":
-        disability_user.phone_number = request.POST.get("phone_number")
-        disability_user.disability_type = request.POST.get("disability_type")
-        disability_user.gender = request.POST.get("gender")
-        disability_user.age = request.POST.get("age")
-        disability_user.address = request.POST.get("address")
+        disability_user.phone_number = request.POST("phone_number")
+        disability_user.disability_type = request.POST("disability_type")
+        disability_user.gender = request.POST("gender")
+        disability_user.age = request.POST("age")
+        disability_user.address = request.POST("address")
         disability_user.save()
         messages.success(request, "Beneficiary profile updated successfully!")
         return redirect("account_app:profile_beneficiary_view")
