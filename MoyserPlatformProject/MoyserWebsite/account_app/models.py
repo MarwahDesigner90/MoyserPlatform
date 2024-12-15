@@ -17,8 +17,6 @@ class User(AbstractUser):
         return self.username
 
 
-
-
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
@@ -55,8 +53,7 @@ class Companion(models.Model):
         ('City20', 'Qassim'),
     ]
 
-    companion = models.OneToOneField(User, on_delete=models.CASCADE, related_name="companion_user")
-    bio = models.TextField()
+    companion = models.OneToOneField(User, on_delete=models.CASCADE , related_name= "compinon_user")
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     hour_rent = models.FloatField()
@@ -70,8 +67,6 @@ class Companion(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.city}"
     
-
-
 class DisabilityUser(models.Model):
     DISABILITY_TYPE_CHOICES = [
         ('VI', 'Visually Impaired'),
