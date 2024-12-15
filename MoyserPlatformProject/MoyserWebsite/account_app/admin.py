@@ -25,7 +25,7 @@ admin.site.register(User, CustomUserAdmin)
 
 @admin.register(Companion)
 class CompanionAdmin(admin.ModelAdmin):
-    list_display = ('Companion', 'city', 'availability', 'hour_rent')
+    list_display = ('companion', 'city', 'availability', 'hour_rent')
     list_filter = ('city', 'availability')
 
 @admin.register(DisabilityUser)
