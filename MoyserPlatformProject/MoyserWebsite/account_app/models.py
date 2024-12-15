@@ -49,6 +49,7 @@ class Companion(models.Model):
         ('City16', 'Abha'),
         ('City17', 'Bisha'),
         ('City18', 'Tabuk'),
+        
         ('City19', 'Hail'),
         ('City20', 'Qassim'),
     ]

@@ -49,7 +49,7 @@ def sign_up_beneficiary_view(request: HttpRequest):
 def profile_companion_view(request: HttpRequest):
     if request.user.role == "companion":
         try:
-            companion = Companion.objects.get(user=request.user)
+            companion = Companion.objects.get(companion=request.user)
             return render(request, "account_app/profile_companion.html", {"companion": companion})
         except Companion.DoesNotExist:
             messages.error(request, "No Companion profile found. Please contact support or create a profile.")
@@ -79,7 +79,7 @@ def sign_up_companion_view(request: HttpRequest):
         try:
             user = User.objects.create_user(username=username, password=password, role="companion")
             companion = Companion.objects.create(
-                user=user,
+                companion=user,
                 bank_account=bank_account,
                 availability=availability,
                 hour_rent=hour_rent,
@@ -126,7 +126,7 @@ def sign_in_user_view(request):
 @login_required
 def edit_companion_profile_view(request):
     # Get the logged-in user's companion object
-    companion = get_object_or_404(Companion, user=request.user)
+    companion = get_object_or_404(Companion, companion=request.user)
 
     if request.method == "POST":
         # Update the companion's profile fields from the POST request
