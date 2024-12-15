@@ -4,6 +4,7 @@ from .models import Booking
 from account_app.models import Companion
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -55,11 +56,43 @@ def booking_history_user_view(request):
     }
     return render(request, "booking_app/user_booking_history.html", context)
 
-
-
-
+@login_required
 def booking_history_companion_view(request):
-    return render(request, 'booking_app/companion_booking_history.html')
+    try:
+        companion = Companion.objects.get(companion=request.user)
+    except Companion.DoesNotExist:
+        
+        messages.error(request, "You can't access this page.")
+        return redirect('booking_app:companion_list')
+
+    companion_bookings = Booking.objects.filter(companion=companion.companion)
+
+    if request.method == 'POST':
+        booking_id = request.POST.get('booking_id')
+        action = request.POST.get('action')
+        try:
+            booking = Booking.objects.get(id=booking_id)
+
+            if action == 'accept':
+                booking.status = 'CONFIRMED'
+                
+            elif action == 'reject':
+                booking.status = 'CANCELLED'
+                
+            booking.save()
+            
+            return redirect('booking_app:booking_history_companion')
+
+        except Booking.DoesNotExist:
+            messages.error(request, "The booking you're trying to modify does not exist.")
+            return redirect('booking_app:booking_history_companion')
+
+    context = {
+        "companion_bookings": companion_bookings,
+    }
+    return render(request, 'booking_app/companion_booking_history.html', context)
+
+
 
 
 def companion_list_view(request):
@@ -68,7 +101,6 @@ def companion_list_view(request):
     Users can select a companion to book from this list.
     """
     companions = Companion.objects.filter(availability=True)
-    # print(companions)
     return render(request, 'booking_app/companion_list.html', {'companions': companions})
 
 

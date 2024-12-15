@@ -1,0 +1,62 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Companion Booking History{% endblock %}
+{% block content %}
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="alert alert-danger">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}    
+    
+    <div class="companion-booking-container">
+        <h1>Companion Booking History</h1>
+
+        {% if companion_bookings %}
+            <div class="companion-booking-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Booking Date & Time</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in companion_bookings %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ booking.user.username }}</td>
+                                <td>{{ booking.booking_date_time }}</td>
+                                <td>{{ booking.address }}</td>
+                                <td>{{ booking.status }}</td>
+                                <td class="companion-booking-actions">
+                                    {% if booking.status == "pending" %}
+                                        <form method="POST" style="display:inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                            <button type="submit" name="action" value="accept" class="companion-booking-action-btn">Accept</button>
+                                        </form>
+                                        <form method="POST" style="display:inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                            <button type="submit" name="action" value="reject" class="companion-booking-action-btn reject">Reject</button>
+                                        </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="companion-booking-no-bookings">No bookings found.</p>
+        {% endif %}
+
+        <a href="{% url 'booking_app:companion_list' %}" class="companion-booking-back-link">Back to Companion List</a>
+    </div>
+{% endblock %}

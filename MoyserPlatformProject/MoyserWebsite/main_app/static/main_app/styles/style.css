@@ -1,0 +1,435 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+
+/* Companion Details Container */
+.companion-details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.companion-info-container, .booking-details-container {
+    margin-bottom: 30px;
+}
+
+.companion-info-container p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+/* Booking Form Styles */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-booking {
+    margin-bottom: 15px;
+}
+
+.form-group-booking label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control-booking {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-submit-booking {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.btn-submit-booking:hover {
+    background-color: #45a049;
+}
+
+/* Back Link Styles */
+.back-link-booking {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.back-link-booking:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .companion-details-container {
+        padding: 15px;
+    }
+
+    .form-group-booking label {
+        font-size: 0.9em;
+    }
+
+    .form-control-booking {
+        font-size: 0.9em;
+    }
+
+    .btn-submit-booking {
+        font-size: 1em;
+    }
+}
+
+
+
+/* Companion Container */
+.companion-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Companion Card */
+.companion-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.companion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Content */
+.companion-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.companion-card p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Book Button */
+.book-button button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.book-button button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .companion-container {
+        justify-content: center;
+    }
+
+    .companion-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+
+/* Companion Info Container */
+.companion-info-container {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.companion-info-container h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Companion Info Section */
+.companion-info {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.companion-info p {
+    margin-bottom: 12px;
+}
+
+.companion-info strong {
+    color: #333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .companion-info-container {
+        padding: 15px;
+    }
+
+    .companion-info-container h3 {
+        font-size: 1.6em;
+    }
+
+    .companion-info p {
+        font-size: 1em;
+    }
+}
+
+
+.booking-history-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.booking-table th, .booking-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.booking-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.booking-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* No Bookings Message */
+.no-bookings-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Back Link Styles */
+.back-link {
+    display: inline-block;
+    font-size: 1.1em;
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.back-link:hover {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .booking-history-container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 2em;
+    }
+
+    .booking-table th, .booking-table td {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
+
+/* Styles for Companion Booking History Page */
+.companion-booking-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.companion-booking-container h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #007bff;
+}
+
+.companion-booking-table {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.companion-booking-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.companion-booking-table th, .companion-booking-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.companion-booking-table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.companion-booking-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center buttons horizontally */
+}
+
+.companion-booking-action-btn {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.companion-booking-action-btn.reject {
+    background-color: #dc3545;
+}
+
+.companion-booking-action-btn:hover {
+    background-color: #0056b3;
+}
+
+.companion-booking-action-btn.reject:hover {
+    background-color: #c82333;
+}
+
+.companion-booking-no-bookings {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.companion-booking-back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.companion-booking-back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .companion-booking-table {
+        width: 90%; /* Reduce the width on smaller screens */
+        padding: 15px;
+    }
+
+    .companion-booking-actions {
+        flex-direction: column; /* Stack the buttons vertically on small screens */
+    }
+
+    .companion-booking-action-btn {
+        width: 100%; /* Make buttons full width on small screens */
+        margin-bottom: 10px; /* Add space between buttons */
+    }
+
+    .companion-booking-table table {
+        font-size: 14px; /* Smaller font size for smaller screens */
+    }
+
+    .companion-booking-table th, .companion-booking-table td {
+        padding: 10px; /* Reduced padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .companion-booking-container h1 {
+        font-size: 1.5rem; /* Smaller heading size on very small screens */
+    }
+
+    .companion-booking-table {
+        padding: 10px;
+    }
+
+    .companion-booking-action-btn {
+        padding: 8px;
+        font-size: 14px; /* Smaller buttons on very small screens */
+    }
+
+    .companion-booking-back-link {
+        font-size: 1rem; /* Adjust size of the back link on small screens */
+    }
+}

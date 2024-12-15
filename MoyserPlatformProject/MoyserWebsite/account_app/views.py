@@ -134,6 +134,7 @@ def edit_companion_profile_view(request):
         companion.gender = request.POST.get("gender")
         companion.age = request.POST.get("age")
         availability = request.POST.get("availability") 
+        companion.availability = True if availability == 'online' else False 
         companion.hour_rent = request.POST.get("hour_rent")
         companion.city = request.POST.get("city")
         skills = request.POST.getlist("skills")  # Get selected skills
