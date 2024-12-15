@@ -13,7 +13,7 @@ def book_companion_view(request, companion_id):
     companion = None
     while not companion:
         try:
-            companion = User.objects.get(id=companion_id)
+            companion = Companion.objects.get(id=companion_id)
         except User.DoesNotExist:
             return redirect("booking_app:companion_list")  # Redirect if companion is not found
 
@@ -32,7 +32,6 @@ def book_companion_view(request, companion_id):
             user=request.user,
             companion=companion,
             booking_date_time=booking_date_time,
-
             address=address,
             status="pending"
         )
@@ -40,9 +39,10 @@ def book_companion_view(request, companion_id):
 
         return redirect("booking_app:companion_list")  # Redirect after successful booking
 
+
     context = {
         "companion": companion,
-        "bookings_as_companion": companion.bookings_as_companion.all(),
+        "bookings_as_companion": Booking.objects.filter(companion=companion.id),
     }
     return render(request, "booking_app/create_booking.html", context)
 
@@ -62,12 +62,13 @@ def booking_history_companion_view(request):
     return render(request, 'booking_app/companion_booking_history.html')
 
 
-# def companion_list_view(request):
-#     """
-#     View to list all available companions.
-#     Users can select a companion to book from this list.
-#     """
-#     companions = Companion.objects.filter(availability=True)
-#     return render(request, 'booking_app/companion_list.html', {'companions': companions})
+def companion_list_view(request):
+    """
+    View to list all available companions.
+    Users can select a companion to book from this list.
+    """
+    companions = Companion.objects.filter(availability=True)
+    # print(companions)
+    return render(request, 'booking_app/companion_list.html', {'companions': companions})
 
 
