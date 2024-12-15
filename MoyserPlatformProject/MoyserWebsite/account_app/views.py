@@ -89,10 +89,11 @@ def sign_up_companion_view(request: HttpRequest):
                 gender=gender,
                 age=age
             )
-            companion.skills.set(Skill.objects.filter(id__in=skills))
+            #companion.skills.set(Skill.objects.filter(id__in=skills))
             messages.success(request, "Companion account created successfully!")
             return redirect("account_app:sign_in_user_view")
         except Exception as e:
+            print(e)
             messages.error(request, f"Error creating account: {e}")
             return render(request, "account_app/sign_up_companion.html")
 
