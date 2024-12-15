@@ -14,3 +14,4 @@ def reviews_companion_view (request:HttpRequest):
 
     return render(request,"main_app/reviews_companion.html")
 
+
