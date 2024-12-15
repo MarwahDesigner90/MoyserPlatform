@@ -30,7 +30,7 @@ def book_companion_view(request, companion_id):
         # Save booking to the database
         Booking.objects.create(
             user=request.user,
-            companion=companion,
+            companion=companion.companion,
             booking_date_time=booking_date_time,
             address=address,
             status="pending"
