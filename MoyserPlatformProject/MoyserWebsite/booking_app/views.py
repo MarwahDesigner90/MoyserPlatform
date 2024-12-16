@@ -9,10 +9,10 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404
 import stripe
 from django.conf import settings
+from django.db.models import Q
+
 
 # Create your views here.
-
-
 @login_required
 def book_companion_view(request, companion_id):
     companion = None
@@ -32,18 +32,29 @@ def book_companion_view(request, companion_id):
             f"{booking_date} {booking_time}", "%Y-%m-%d %H:%M"
         )
 
-        # Save booking to the database
+        # Set the end time to be one hour after the booking date and time
+        end_booking_date_time = booking_date_time + timezone.timedelta(hours=1)
+
+        # Check if there's already a booking for the same companion at the selected time
+        if Booking.objects.filter(
+            companion=companion.companion, 
+            booking_date_time__lt=end_booking_date_time,  # Ensure the new booking's end time doesn't overlap with existing bookings
+            end_booking_date_time__gt=booking_date_time,  # Ensure the new booking's start time doesn't overlap with existing bookings
+        ).exists():
+            messages.error(request, "This time slot is already booked. Please choose a different time.")
+            return redirect('booking_app:book_companion', companion_id=companion.id)  # Stay on the booking page
+
+        # Save booking to the database with the start and end times
         booking = Booking.objects.create(
             user=request.user,
             companion=companion.companion,
             booking_date_time=booking_date_time,
+            end_booking_date_time=end_booking_date_time,  # Store the end time
             address=address,
             status="pending"
         )
 
-
         return redirect(reverse('booking_app:payment', args=[booking.id]))  # Redirect after successful booking
-
 
     context = {
         "companion": companion,
@@ -99,13 +110,33 @@ def booking_history_companion_view(request):
 
 
 
+@login_required
 def companion_list_view(request):
     """
-    View to list all available companions.
-    Users can select a companion to book from this list.
+    View to list all available companions with search functionality.
+    Users can filter companions by city and gender.
     """
+    search_city = request.GET.get('city', '')
+    search_gender = request.GET.get('gender', '')
+
+    # Apply filters based on the search query
     companions = Companion.objects.filter(availability=True)
-    return render(request, 'booking_app/companion_list.html', {'companions': companions})
+
+    if search_city:
+        companions = companions.filter(city__icontains=search_city)
+
+    if search_gender:
+        companions = companions.filter(gender__icontains=search_gender)
+
+    # Get all unique cities for the filter dropdown
+    cities = [choice[0] for choice in Companion.CITY_CHOICES]
+
+    return render(request, 'booking_app/companion_list.html', {
+        'companions': companions,
+        'cities': cities,
+        'search_city': search_city,
+        'search_gender': search_gender
+    })
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
