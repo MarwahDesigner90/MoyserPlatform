@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+STRIPE_SECRET_KEY = 'sk_test_51QWOqCG3qD07sEBsML2wSeEeIjUQS6laNxQp7hXje9mCPri7cP5qCilfI0U6h8cZ9uPOa49AIeUrsYn0cYqA5kGy005ktyrVTw'
+STRIPE_PUBLIC_KEY = 'pk_test_51QWOqCG3qD07sEBs3QHJVOqc0gy2KakUKRvlWvtL91gqGsqRDzD42ySadsNUjzYFwYukEHYL5ckvfRlmrABtLCvB00Y8ELO1l2'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'account_app',
     'booking_app',
     'dashboard_app',
+    
 ]
 
 

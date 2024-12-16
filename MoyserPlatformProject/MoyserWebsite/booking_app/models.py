@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+
 # Create your models here.
 
 STATUS_CHOICES = [
@@ -23,7 +24,6 @@ class Booking(models.Model):
     
 class Payment(models.Model):
     booking = models.OneToOneField('Booking', on_delete=models.CASCADE)
-    amount = models.FloatField()
     payment_date = models.DateTimeField(auto_now_add=True)
     status_choices = [
         ('pending', 'Pending'),

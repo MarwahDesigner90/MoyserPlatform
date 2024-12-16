@@ -80,7 +80,7 @@ def sign_up_companion_view(request: HttpRequest):
             companion = Companion.objects.create(
                 companion=user,
                 bank_account=bank_account,
-                availability=availability, #check this plz
+                # availability=availability, #check this plz
                 hour_rent=hour_rent,
                 city=city,
                 certification=certification,
@@ -134,6 +134,7 @@ def edit_companion_profile_view(request):
         companion.gender = request.POST.get("gender")
         companion.age = request.POST.get("age")
         availability = request.POST.get("availability") 
+        companion.availability = True if availability == 'online' else False 
         companion.hour_rent = request.POST.get("hour_rent")
         companion.city = request.POST.get("city")
         skills = request.POST.getlist("skills")  # Get selected skills
