@@ -30,7 +30,7 @@ class Skill(models.Model):
         ('life_skills_coaching', 'Life Skills Coaching'),
         ('personal_care_assistance', 'Personal Care Assistance'),
         ('communication_aids', 'Communication Aids'),
-        ('other', 'Other'),  # Option for custom skills
+        ('other', 'Other'),  
     ]
 
     name = models.CharField(max_length=100, choices=SKILL_CHOICES, unique=True)
@@ -46,26 +46,26 @@ class Companion(models.Model):
     ]
 
     CITY_CHOICES = [
-        ('City1', 'Riyadh'),
-        ('City2', ' Al-kharj'),
-        ('City3', 'Al-majmaah'),
-        ('City4', 'Afif'),
-        ('City5', 'Jeddah'),
-        ('City6', 'Makkah'),
-        ('City7', 'Al-Taif'),
-        ('City8', 'Rabigh'),
-        ('City9', 'Al-Madinah'),
-        ('City10','Dammam'),
-        ('City11', 'Al-Ahsa'),
-        ('City12', 'Jizan'),
-        ('City14', 'Najran'),
-        ('City15', 'Al-jawf'),
-        ('City16', 'Abha'),
-        ('City17', 'Bisha'),
-        ('City18', 'Tabuk'),
-        ('City19', 'Hail'),
-        ('City20', 'Qassim'),
-    ]
+    ('Riyadh', 'Riyadh'),
+    ('Al-kharj', 'Al-kharj'),
+    ('Al-majmaah', 'Al-majmaah'),
+    ('Afif', 'Afif'),
+    ('Jeddah', 'Jeddah'),
+    ('Makkah', 'Makkah'),
+    ('Al-Taif', 'Al-Taif'),
+    ('Rabigh', 'Rabigh'),
+    ('Al-Madinah', 'Al-Madinah'),
+    ('Dammam', 'Dammam'),
+    ('Al-Ahsa', 'Al-Ahsa'),
+    ('Jizan', 'Jizan'),
+    ('Najran', 'Najran'),
+    ('Al-jawf', 'Al-jawf'),
+    ('Abha', 'Abha'),
+    ('Bisha', 'Bisha'),
+    ('Tabuk', 'Tabuk'),
+    ('Hail', 'Hail'),
+    ('Qassim', 'Qassim'),
+]
 
     companion = models.OneToOneField(User, on_delete=models.CASCADE , related_name= "compinon_user")
     bank_account = models.CharField(max_length=100)
