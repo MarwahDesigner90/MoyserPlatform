@@ -12,28 +12,28 @@
     </ul>
 {% endif %}
 
-<h1>Available Companions</h1>
+<h1 class="especial-heading">Available Companions</h1>
 
 <!-- Search Form -->
-<form method="get" action="{% url 'booking_app:companion_list' %}">
-    <div>
+<form method="get" action="{% url 'booking_app:companion_list' %}" class="search-form">
+    <div class="form-group">
         <label for="city">City:</label>
-        <select id="city" name="city">
+        <select id="city" name="city" class="form-control">
             <option value="">Any City</option>
             {% for city in cities %}
                 <option value="{{ city }}" {% if search_city == city %}selected{% endif %}>{{ city }}</option>
             {% endfor %}
         </select>
     </div>
-    <div>
+    <div class="form-group">
         <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
+        <select id="gender" name="gender" class="form-control">
             <option value="">Any</option>
             <option value="M" {% if search_gender == 'M' %}selected{% endif %}>Male</option>
             <option value="F" {% if search_gender == 'F' %}selected{% endif %}>Female</option>
         </select>
     </div>
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <div class="companion-container">
@@ -46,6 +46,11 @@
 
             <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
                 <button>Book this Companion</button>
+            </a>
+
+            <!-- View Feedback Button -->
+            <a href="{% url 'booking_app:view_feedback' companion.id %}" class="view-feedback-button">
+                <button>View Feedback</button>
             </a>
         </div>
     {% endfor %}

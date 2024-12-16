@@ -1,6 +1,7 @@
 {% extends "main_app/base.html" %}
-{% load static %}
+
 {% block title %}Booking History{% endblock %}
+
 {% block content %}
     
     <div class="booking-history-container">
@@ -15,6 +16,7 @@
                         <th>Booking Date & Time</th>
                         <th>Address</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,12 +27,19 @@
                         <td>{{ booking.booking_date_time }}</td>
                         <td>{{ booking.address }}</td>
                         <td>{{ booking.status }}</td>
+                        <td>
+                            {% if booking.status == 'CONFIRMED' %}
+                                <a href="{% url 'booking_app:add_feedback' booking.companion.id %}" class="feedback-button">
+                                    <button>Leave Feedback</button>
+                                </a>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% else %}
-            <p class="no-bookings-message">No bookings found.</p>
+            <p class="no-bookings-message">No confirmed bookings found.</p>
         {% endif %}
 
         <br>
