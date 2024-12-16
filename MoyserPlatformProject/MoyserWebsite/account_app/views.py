@@ -80,7 +80,7 @@ def sign_up_companion_view(request: HttpRequest):
             companion = Companion.objects.create(
                 companion=user,
                 bank_account=bank_account,
-                # availability=availability, #check this plz
+                #availability=availability, #check this plz
                 hour_rent=hour_rent,
                 city=city,
                 certification=certification,

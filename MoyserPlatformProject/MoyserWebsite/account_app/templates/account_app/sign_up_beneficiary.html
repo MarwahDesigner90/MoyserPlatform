@@ -14,7 +14,6 @@
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
     <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         <img class="w-40 h-40 mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
-        Moyser    
     </a>
     <div class="w-full bg-sky-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -57,9 +56,30 @@
                     <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
                     <input type="number" name="age" id="age" required class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your age">
                 </div>
+                
                 <div>
-                    <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                    <input type="text" name="address" id="address" required class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your address">
+                    <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">City</label>
+                    <select name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="Riyadh">Riyadh</option>
+                        <option value="Al-kharj">Al-kharj</option>
+                        <option value="Al-majmaah">Al-majmaah</option>
+                        <option value="Afif">Afif</option>
+                        <option value="Jeddah">Jeddah</option>
+                        <option value="Makkah">Makkah</option>
+                        <option value="Al-Taif">Al-Taif</option>
+                        <option value="Rabigh">Rabigh</option>
+                        <option value="Al-Madinah">Al-Madinah</option>
+                        <option value="Dammam">Dammam</option>
+                        <option value="Al-Ahsa">Al-Ahsa</option>
+                        <option value="Jizan">Jizan</option>
+                        <option value="Najran">Najran</option>
+                        <option value="Al-jawf">Al-jawf</option>
+                        <option value="Abha">Abha</option>
+                        <option value="Bisha">Bisha</option>
+                        <option value="Tabuk">Tabuk</option>
+                        <option value="Hail">Hail</option>
+                        <option value="Qassim">Qassim</option>
+                    </select>
                 </div>
                 <button type="submit" class="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign Up</button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
