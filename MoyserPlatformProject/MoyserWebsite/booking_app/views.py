@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Booking, Payment
-from account_app.models import Companion
+from account_app.models import Companion, DisabilityUser
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -10,6 +10,9 @@ from django.shortcuts import get_object_or_404
 import stripe
 from django.conf import settings
 from django.db.models import Q
+from .forms import FeedbackForm
+from main_app.models import Feedback
+
 
 
 # Create your views here.
@@ -66,6 +69,10 @@ def book_companion_view(request, companion_id):
 @login_required
 def booking_history_user_view(request):
     user_bookings = Booking.objects.filter(user=request.user)
+    
+    # Ensure only confirmed bookings are visible for feedback
+    user_bookings = user_bookings.filter(status="CONFIRMED")
+    
     context = {
         "user_bookings": user_bookings,
     }
@@ -183,3 +190,37 @@ def payment_view(request, booking_id):
         "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
     }
     return render(request, "booking_app/payment.html", context)
+
+
+@login_required
+def add_feedback_view(request, companion_id):
+    companion = get_object_or_404(Companion, id=companion_id)
+
+    # Get the user's latest booking for this companion
+    user_booking = Booking.objects.filter(user=request.user, companion=companion.companion).last()
+
+    # Check if the booking status is CONFIRMED
+    if not user_booking or user_booking.status != 'CONFIRMED':
+        messages.error(request, "You can only leave a review after the booking has been confirmed.")
+        return redirect('booking_app:booking_history_user')  # Redirect to booking history
+
+    if request.method == "POST":
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.disability_user = DisabilityUser.objects.get(user=request.user)  # Assuming the user is a disability user
+            feedback.companion = companion
+            feedback.save()
+            messages.success(request, "Feedback added successfully!")
+            return redirect('booking_app:companion_list')  # Redirect to the list of companions
+    else:
+        form = FeedbackForm()
+
+    return render(request, "booking_app/add_feedback.html", {"form": form, "companion": companion})
+
+
+# View to list feedback for a specific companion
+def view_feedback_view(request, companion_id):
+    companion = get_object_or_404(Companion, id=companion_id)
+    feedbacks = Feedback.objects.filter(companion=companion).all()
+    return render(request, "booking_app/view_feedback.html", {"companion": companion, "feedbacks": feedbacks})
