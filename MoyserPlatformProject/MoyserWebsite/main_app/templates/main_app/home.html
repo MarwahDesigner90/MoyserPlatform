@@ -12,47 +12,40 @@
       </p>
  </div>
 
-  <!-- Filter Engine -->
-  <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
-   <h2 class="text-2xl font-semibold text-white ">Find Your Companion</h2>
-      <form class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
-          <select name="city" class="border rounded-lg p-2">
-                            <option value="" disabled selected>Select City</option>
-                            <option value="Riyadh">Riyadh</option>
-                            <option value="Jeddah">Jeddah</option>
-                            <option value="Dammam">Dammam</option>
-                            <!-- Add more cities as needed -->
-                        </select>
+<!-- Filter Engine -->
+<div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
+  <h2 class="text-2xl font-semibold text-white">Find Your Companion</h2>
+  <form method="get" action="{% url 'main_app:companions_list_view' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
+      <select name="city" class="border rounded-lg p-2">
+          <option value="" disabled selected>Select City</option>
+          {% for value, city in companion.CITY_CHOICES %}
+              <option value="{{ value }}">{{ city }}</option>
+          {% endfor %}
+      </select>
 
-                        <select name="skills" class="border rounded-lg p-2">
-                            <option value="" disabled selected>Select Skills</option>
-                            <option value="Communication">Communication</option>
-                            <option value="Mobility Assistance">Mobility Assistance</option>
-                            <option value="Sign Language">Sign Language</option>
-                            <!-- Add more skills as needed -->
-                        </select>
+      <select name="skills" class="border rounded-lg p-2">
+          <option value="" disabled selected>Select Skills</option>
+          {% for skill in skills %}
+              <option value="{{ skill.name }}">{{ skill.get_name_display }}</option>
+          {% endfor %}
+      </select>
 
-                        <select name="disability_type" class="border rounded-lg p-2">
-                            <option value="" disabled selected>Select Disability Type</option>
-                            <option value="Visual Impairment">Visual Impairment</option>
-                            <option value="Hearing Impairment">Hearing Impairment</option>
-                            <option value="Physical Disability">Physical Disability</option>
-                            <!-- Add more types as needed -->
-                        </select>
+      <select name="disability_type" class="border rounded-lg p-2">
+          <option value="" disabled selected>Select Disability Type</option>
+          <option value="VI">Visually Impaired</option>
+          <option value="HI">Hearing Impaired</option>
+          <option value="MD">Mobility Disability</option>
+          <option value="OD">Other Disability</option>
+          <!-- Add more types as needed -->
+      </select>
 
-        
-                    </form>
-                    <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-amber-400 text-white hover:bg-sky-700 mt-5">
-                        Find Companion
-                    </button>
-                </div>
+      <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-amber-400 text-white hover:bg-sky-700 mt-5">
+          Find Companion
+      </button>
+  </form>
+</div>
 
-  
-<!--
-  Heads up! 👋
-
-  This component comes with some `rtl` classes. Please remove them if they are not needed in your project.
--->
+<!--Heads up! 👋 This component comes with some `rtl` classes. Please remove them if they are not needed in your project.-->
 
 <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
 
