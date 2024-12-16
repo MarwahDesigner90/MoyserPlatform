@@ -1,42 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Companion</title>
-</head>
-<body>
-    <h1>Book {{ companion.companion.username }}</h1>
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Book Companion{% endblock %}
+{% block content %}
+    <div class="companion-details-container">
+        <h1>Book {{ companion.companion.username }}</h1>
 
-    <h3>Companion Details</h3>
-    <p><strong>Bio:</strong> {{ companion.bio }}</p>
-    <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
-    <p><strong>City:</strong> {{ companion.city }}</p>
-    <p><strong>Phone Number:</strong> {{ companion.phone_number }}</p>
-
-    <h3>Booking Details</h3>
-    <form method="POST">
-        {% csrf_token %}
-        
-        <div>
-            <label for="booking_date">Booking Date:</label>
-            <input type="date" name="booking_date" id="booking_date" required>
+        <div class="companion-info-container">
+            <h3>Companion Details</h3>
+            <div class="companion-info">
+                <p><strong>Bio:</strong> {{ companion.bio }}</p>
+                <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
+                <p><strong>City:</strong> {{ companion.city }}</p>
+                <p><strong>Phone Number:</strong> {{ companion.phone_number }}</p>
+            </div>
         </div>
 
-        <div>
-            <label for="booking_time">Booking Time:</label>
-            <input type="time" name="booking_time" id="booking_time" required>
+        <div class="booking-details-container">
+            <h3>Booking Details</h3>
+            <form method="POST" class="booking-form">
+                {% csrf_token %}
+                
+                <div class="form-group-booking">
+                    <label for="booking_date">Booking Date:</label>
+                    <input type="date" name="booking_date" id="booking_date" class="form-control-booking" required>
+                </div>
+
+                <div class="form-group-booking">
+                    <label for="booking_time">Booking Time:</label>
+                    <input type="time" name="booking_time" id="booking_time" class="form-control-booking" required>
+                </div>
+
+                <div class="form-group-booking">
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" id="address" class="form-control-booking" required>
+                </div>
+
+                <button type="submit" class="btn-submit-booking">Create Booking</button>
+            </form>
         </div>
 
-        <div>
-            <label for="address">Address:</label>
-            <input type="text" name="address" id="address" required>
-        </div>
-
-        <button type="submit">Create Booking</button>
-    </form>
-
-    <br>
-    <a href="{% url 'booking_app:companion_list' %}">Back to Companion List</a>
-</body>
-</html>
+        <br>
+        <a href="{% url 'booking_app:companion_list' %}" class="back-link-booking">Back to Companion List</a>
+    </div>
+{% endblock %}

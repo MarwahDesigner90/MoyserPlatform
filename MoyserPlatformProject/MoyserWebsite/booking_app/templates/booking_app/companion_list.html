@@ -1,13 +1,14 @@
-<!-- companion_list.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Companions</title>
-    
-</head>
-<body>
+{% extends "main_app/base.html" %}
+{% load static %}
+{% block title %}Available Companions{% endblock %}
+{% block content %}
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="alert alert-danger">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
     <h1>Available Companions</h1>
 
     <div class="companion-container">
@@ -17,15 +18,12 @@
                 <p><strong>City:</strong> {{ companion.city }}</p>
                 <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
                 <p><strong>Age:</strong> {{ companion.age }}</p>
-                <p><strong>Gender:</strong> {{ companion.get_gender_display }}</p>
-                
-                 Book Button -->
-                <!-- <a href="{% url 'booking_app:book_companion' companion.id %}">
+
+                <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
                     <button>Book this Companion</button>
                 </a>
             </div>
         {% endfor %}
     </div>
 
-</body>
-</html> --> 
+{% endblock %}
