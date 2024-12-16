@@ -30,8 +30,8 @@ class Skill(models.Model):
         ('life_skills_coaching', 'Life Skills Coaching'),
         ('personal_care_assistance', 'Personal Care Assistance'),
         ('communication_aids', 'Communication Aids'),
-        ('other', 'Other'),  
-    ]
+  
+
 
     name = models.CharField(max_length=100, choices=SKILL_CHOICES, unique=True)
     description = models.TextField(blank=True, null=True)
@@ -77,6 +77,7 @@ class Companion(models.Model):
     phone_number = models.CharField(max_length=15)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     age = models.IntegerField()
+    image = models.ImageField(upload_to='images/', default='images/default.jpeg')
 
     def __str__(self):
         return f"{self.companion.username} - {self.city}"
@@ -101,6 +102,7 @@ class DisabilityUser(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     age = models.IntegerField(null=True)
     address = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/', default='images/default.jpeg')
 
     def __str__(self):
         return self.user.username 
