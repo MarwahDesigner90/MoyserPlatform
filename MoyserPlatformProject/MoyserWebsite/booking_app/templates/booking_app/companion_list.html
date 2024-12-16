@@ -1,6 +1,8 @@
 {% extends "main_app/base.html" %}
 {% load static %}
+
 {% block title %}Available Companions{% endblock %}
+
 {% block content %}
 {% if messages %}
     <ul>
@@ -9,21 +11,44 @@
         {% endfor %}
     </ul>
 {% endif %}
-    <h1>Available Companions</h1>
 
-    <div class="companion-container">
-        {% for companion in companions %}
-            <div class="companion-card">
-                <h3>{{ companion.companion.username }}</h3>
-                <p><strong>City:</strong> {{ companion.city }}</p>
-                <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
-                <p><strong>Age:</strong> {{ companion.age }}</p>
+<h1>Available Companions</h1>
 
-                <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
-                    <button>Book this Companion</button>
-                </a>
-            </div>
-        {% endfor %}
+<!-- Search Form -->
+<form method="get" action="{% url 'booking_app:companion_list' %}">
+    <div>
+        <label for="city">City:</label>
+        <select id="city" name="city">
+            <option value="">Any City</option>
+            {% for city in cities %}
+                <option value="{{ city }}" {% if search_city == city %}selected{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select>
     </div>
+    <div>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="">Any</option>
+            <option value="M" {% if search_gender == 'M' %}selected{% endif %}>Male</option>
+            <option value="F" {% if search_gender == 'F' %}selected{% endif %}>Female</option>
+        </select>
+    </div>
+    <button type="submit">Search</button>
+</form>
+
+<div class="companion-container">
+    {% for companion in companions %}
+        <div class="companion-card">
+            <h3>{{ companion.companion.username }}</h3>
+            <p><strong>City:</strong> {{ companion.city }}</p>
+            <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
+            <p><strong>Age:</strong> {{ companion.age }}</p>
+
+            <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
+                <button>Book this Companion</button>
+            </a>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
