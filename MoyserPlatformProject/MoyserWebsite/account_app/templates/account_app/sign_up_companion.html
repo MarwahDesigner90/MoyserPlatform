@@ -11,9 +11,11 @@
         {% endfor %}
     {% endif %}
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a href="#" class="flex items-center mb-6">
-        <img class="w-32 h-auto mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
-        <span class="text-2xl font-semibold text-gray-900 dark:text-white"></span>
+    <a href="#" class="flex flex-col items-center justify-center mb-6">
+        <img 
+            class="w-20 h-14 mb-2" 
+            src="{% static 'images/MoyserLogo.png' %}" 
+            alt="Moyser Logo">
     </a>
     <div class="w-[1000px] h-[1000px] bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -24,8 +26,13 @@
                 {% csrf_token %}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">User Name</label>
-                        <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Username" required>
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
+                        <input type="text" name="username" id="username" required class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your username">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" name="email" id="email" required class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your email address">
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left w-full">Password</label>
@@ -88,7 +95,7 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <label for="skills" class="block mb-4 text-sm font-medium text-gray-900 dark:text-white text-left">Skills</label>
-                        <div id="skills" class="grid grid-cols-4 gap-x-8 gap-y-4">
+                        <div id="skills" class="grid grid-cols-2 gap-x-12 gap-y-2">
                             {% for skill in skills %}
                                 <div class="flex items-center">
                                     <input 

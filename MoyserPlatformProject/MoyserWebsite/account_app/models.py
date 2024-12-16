@@ -10,6 +10,8 @@ class User(AbstractUser):
     ROLE_CHOICES = [
         ('companion', 'Companion'),
         ('beneficiary', 'Beneficiary'),
+        ('admin', 'Admin'),
+
     ]
     role = models.CharField(max_length=15, choices=ROLE_CHOICES, default='beneficiary')
 
@@ -82,13 +84,14 @@ class Companion(models.Model):
     def __str__(self):
         return f"{self.companion.username} - {self.city}"
     
+
+
 class DisabilityUser(models.Model):
     DISABILITY_TYPE_CHOICES = [
         ('VI', 'Visually Impaired'),
         ('HI', 'Hearing Impaired'),
         ('MD', 'Mobility Disability'),
         ('OD', 'Other Disability'),
-       
     ]
 
     GENDER_CHOICES = [
@@ -96,13 +99,36 @@ class DisabilityUser(models.Model):
         ('F', 'Female'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE) 
-    phone_number = models.CharField(max_length=15)
+    CITY_CHOICES = [
+        ('Riyadh', 'Riyadh'),
+        ('Al-kharj', 'Al-kharj'),
+        ('Al-majmaah', 'Al-majmaah'),
+        ('Afif', 'Afif'),
+        ('Jeddah', 'Jeddah'),
+        ('Makkah', 'Makkah'),
+        ('Al-Taif', 'Al-Taif'),
+        ('Rabigh', 'Rabigh'),
+        ('Al-Madinah', 'Al-Madinah'),
+        ('Dammam', 'Dammam'),
+        ('Al-Ahsa', 'Al-Ahsa'),
+        ('Jizan', 'Jizan'),
+        ('Najran', 'Najran'),
+        ('Al-jawf', 'Al-jawf'),
+        ('Abha', 'Abha'),
+        ('Bisha', 'Bisha'),
+        ('Tabuk', 'Tabuk'),
+        ('Hail', 'Hail'),
+        ('Qassim', 'Qassim'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15, blank=True) 
     disability_type = models.CharField(max_length=2, choices=DISABILITY_TYPE_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    age = models.IntegerField(null=True)
-    address = models.CharField(max_length=255)
+    age = models.PositiveIntegerField(null=True)  
+    city = models.CharField(max_length=50, choices=CITY_CHOICES, default='Riyadh')
+
     image = models.ImageField(upload_to='images/', default='images/default.jpeg')
 
     def __str__(self):
-        return self.user.username 
+        return self.user.username

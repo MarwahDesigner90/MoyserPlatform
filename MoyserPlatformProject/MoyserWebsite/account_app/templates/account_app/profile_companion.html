@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Profile Companion Page{% endblock %}
 {% block content %}
-{% if messages %}
+    {% if messages %}
         {% for message in messages %}
             <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
                 {{ message }}
@@ -10,64 +10,79 @@
             </div>
         {% endfor %}
     {% endif %}
-<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-        <img class="w-40 h-40 mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
-        Moyser
-    </a>
-    <div class="w-full bg-sky-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Companion Profile
-            </h1>
-            <div class="space-y-4">
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.user.first_name }} {{ companion.user.last_name }}</p>
+
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <!-- Logo Section -->
+        <a href="#" class="flex flex-col items-center justify-center mb-6">
+            <img 
+                class="w-20 h-14 mb-2" 
+                src="{% static 'images/MoyserLogo.png' %}" 
+                alt="Moyser Logo">
+        </a>
+
+        <div class="w-full bg-sky-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
+            <div class="p-6 space-y-6 md:space-y-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
+                    Companion Profile
+                </h1>
+                <div class="space-y-4">
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Full Name:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.user.first_name }} {{ companion.user.last_name }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Username:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.user.username }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Phone Number:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.phone_number }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Gender:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.get_gender_display }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Age:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.age }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Hourly Rent:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.hour_rent }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">City:</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.city }}</p>
+                    </div>
+                    <div>
+                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Skills:</p>
+                        <ul class="list-disc ml-4 text-gray-700 dark:text-gray-300">
+                            {% for skill in companion.skills.all %}
+                            <li>{{ skill.name }}</li>
+                            {% empty %}
+                            <li>No skills selected.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
                 </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.user.username }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.bio }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.phone_number }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.get_gender_display }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.age }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hourly Rent:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.hour_rent }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City:</p>
-                    <p class="text-gray-700 dark:text-gray-300">{{ companion.city }}</p>
-                </div>
-                <div>
-                    <p class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skills:</p>
-                    <ul class="list-disc ml-4 text-gray-700 dark:text-gray-300">
-                        {% for skill in companion.skills.all %}
-                        <li>{{ skill.name }}</li>
-                        {% endfor %}
-                    </ul>
+                <div class="flex flex-col space-y-4">
+                    <a href="{% url 'account_app:edit_companion_profile_view' %}" 
+                        class="w-full text-center text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Edit Profile
+                    </a>
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'account_app:logout' %}" method="post" class="flex justify-center">
+                        {% csrf_token %}
+                        <button 
+                            type="submit" 
+                            class="w-full px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300">
+                            Log Out
+                        </button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
-            <a href="{% url 'account_app:edit_companion_profile_view' %}" class="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                Edit Profile
-            </a>
-            
         </div>
     </div>
-</div>
-
 {% endblock %}
