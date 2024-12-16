@@ -126,9 +126,9 @@ def companion_list_view(request):
     search_city = request.GET.get('city', '')
     search_gender = request.GET.get('gender', '')
 
-    # Apply filters based on the search query
     companions = Companion.objects.filter(availability=True)
 
+    # Apply filters based on the search query
     if search_city:
         companions = companions.filter(city__icontains=search_city)
 
