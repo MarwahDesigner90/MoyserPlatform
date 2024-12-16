@@ -24,7 +24,8 @@ def sign_up_beneficiary_view(request: HttpRequest):
         disability_type = request.POST.get("disability_type")
         gender = request.POST.get("gender")
         age = request.POST.get("age")
-        address = request.POST.get("address")
+        city = request.POST.get("city")
+
 
         try:
             user = User.objects.create_user(username=username, password=password, role="beneficiary")
@@ -34,7 +35,8 @@ def sign_up_beneficiary_view(request: HttpRequest):
                 disability_type=disability_type,
                 gender=gender,
                 age=age,
-                address=address
+                city=city,
+                
             )
             messages.success(request, "Beneficiary account created successfully!")
             return redirect("account_app:sign_in_user_view")
@@ -88,7 +90,7 @@ def sign_up_companion_view(request: HttpRequest):
                 gender=gender,
                 age=age
             )
-            #companion.skills.set(Skill.objects.filter(id__in=skills))
+            companion.skills.set(Skill.objects.filter(id__in=skills))
             messages.success(request, "Companion account created successfully!")
             return redirect("account_app:sign_in_user_view")
         except Exception as e:
@@ -158,7 +160,7 @@ def edit_beneficiary_profile_view(request: HttpRequest):
         disability_user.disability_type = request.POST.get("disability_type")
         disability_user.gender = request.POST.get("gender")
         disability_user.age = request.POST.get("age")
-        disability_user.address = request.POST.get("address")
+        disability_user.city = request.POST.get("city")         
         disability_user.save()
         messages.success(request, "Beneficiary profile updated successfully!")
         return redirect("account_app:profile_beneficiary_view")
