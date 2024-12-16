@@ -1,94 +1,67 @@
 {% extends "main_app/base.html" %}
 {% load static %}
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
 {% block content %}
-
-<div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-        <img class="w-32 h-32 mr-2" src="{% static 'images/MoyserLogo.png' %}" alt="logo">
-    </a>
-    <!-- Adjusted width -->
-    <div class="w-full max-w-[1000px] bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-8 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white">
-                Admin Dashboard
-            </h1>
-            <!-- Monitoring Options -->
-            <div class="space-y-4">
-                <ul class="space-y-2">
-                    <li>
-                        <a href="{% url 'dashboard_app:beneficiary_dashboard' %}" 
-                           class="block w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            Monitor Beneficiaries
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'dashboard_app:companion_dashboard' %}" 
-                           class="block w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            Monitor Companions
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Recent Activities Section -->
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activities</h2>
-                <p class="text-gray-700 dark:text-gray-300 mt-2">Feature coming soon...</p>
-            </div>
-
-            <!-- Statistics Section -->
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Statistics</h2>
-                <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 mt-2">
-                    <li>Total Beneficiaries: <strong>150</strong></li>
-                    <li>Total Companions: <strong>75</strong></li>
-                    <li>Active Sessions: <strong>10</strong></li>
-                </ul>
-            </div>
-
-            <!-- Chart Section -->
-            <div class="mt-6">
-                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Chart Visualization</h2>
-                <canvas id="dashboardChart" class="w-full h-[300px]"></canvas>
-            </div>
+<div class="flex pt-20">
+    <!-- Sidebar -->
+    <div class="w-64 bg-sky-700 text-white h-screen">
+        <div class="p-4">
+            <h2 class="text-2xl font-semibold">Dashboard</h2>
+            <ul class="mt-8">
+                <li><a href="#companions" class="block py-2 px-4 hover:bg-sky-600">Companions</a></li>
+                <li><a href="#settings" class="block py-2 px-4 hover:bg-sky-600">Settings</a></li>
+            </ul>
         </div>
     </div>
+
+    <!-- Main content -->
+    <div class="flex-1 p-6 bg-sky-100">
+        <section id="companions">
+            <h2 class="text-2xl font-semibold mb-4">Companions List</h2>
+            <div class="flex justify-between mb-4">
+                <a href="" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Add New Companion</a>
+                <input type="text" name="search" placeholder="Search..." class="px-4 py-2 border rounded">
+            </div>
+            <table class="min-w-full bg-white border">
+                <thead>
+                    <tr class="bg-sky-200">
+                        <th class="py-2 px-4 border-b">Image</th>
+                        <th class="py-2 px-4 border-b">Companion Name</th>
+                        <th class="py-2 px-4 border-b">Username</th>
+                        <th class="py-2 px-4 border-b">Rent per Hour</th>
+                        <th class="py-2 px-4 border-b">Phone Number</th>
+                        <th class="py-2 px-4 border-b">Certificate</th>
+                        <th class="py-2 px-4 border-b">Skills</th>
+                        <th class="py-2 px-4 border-b">Email</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for companion in companions %}
+                    <tr>
+                        <td class="py-2 px-4 border-b"><img src="{{ companion.image.url }}" alt="Image" class="w-16 h-16 rounded-full"></td>
+                        <td class="py-2 px-4 border-b">{{ companion.companion.first_name }} {{ companion.companion.last_name }}</td>
+                        <td class="py-2 px-4 border-b">{{ companion.companion.username }}</td>
+                        <td class="py-2 px-4 border-b">${{ companion.hour_rent }}</td>
+                        <td class="py-2 px-4 border-b">{{ companion.phone_number }}</td>
+                        <td class="py-2 px-4 border-b">
+                            {% if companion.certification %}
+                                <a href="{{ companion.certification.url }}" target="_blank" class="text-blue-600 hover:underline">View Certificate</a>
+                            {% else %}
+                                No Certificate
+                            {% endif %}
+                        </td>
+                        <td class="py-2 px-4 border-b">{{ companion.skills.all|join:", " }}</td>
+                        <td class="py-2 px-4 border-b">{{ companion.companion.email }}</td>
+                        <td class="py-2 px-4 border-b">
+                            <a href="" class="text-white rounded-full p-2 bg-blue-500 hover:bg-blue-600">Edit</a>
+                            <a href="" class="ml-4 text-white rounded-full p-2 bg-red-500 hover:bg-red-600">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
 </div>
-
-<!-- Chart.js Script -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('dashboardChart').getContext('2d');
-    const dashboardChart = new Chart(ctx, {
-        type: 'bar', // Bar chart
-        data: {
-            labels: ['Beneficiaries', 'Companions', 'Active Sessions'],
-            datasets: [{
-                label: 'Statistics',
-                data: [150, 75, 10], // Update data as needed
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)'
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            responsive: true
-        }
-    });
-</script>
-
 {% endblock %}

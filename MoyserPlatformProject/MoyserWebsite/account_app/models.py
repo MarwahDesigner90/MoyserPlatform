@@ -31,7 +31,7 @@ class Skill(models.Model):
         ('personal_care_assistance', 'Personal Care Assistance'),
         ('communication_aids', 'Communication Aids'),
   
-
+    ]
 
     name = models.CharField(max_length=100, choices=SKILL_CHOICES, unique=True)
     description = models.TextField(blank=True, null=True)
