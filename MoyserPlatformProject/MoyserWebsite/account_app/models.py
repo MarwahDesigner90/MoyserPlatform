@@ -16,11 +16,25 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-
 class Skill(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    SKILL_CHOICES = [
+        ('orientation_and_mobility', 'Orientation and Mobility'),
+        ('Reading_instructions', 'Reading the instructions'),
+        ('assistive_technology', 'Assistive Technology'),
+        ('sign_language_interpretation', 'Sign Language Interpretation'),
+        ('lip_reading', 'Lip Reading'),
+        ('auditory_training', 'Auditory Training'),
+        ('mobility_assistance', 'Mobility Assistance'),
+        ('physical_therapy', 'Physical Therapy'),
+        ('wheelchair_management', 'Wheelchair Management'),
+        ('life_skills_coaching', 'Life Skills Coaching'),
+        ('personal_care_assistance', 'Personal Care Assistance'),
+        ('communication_aids', 'Communication Aids'),
+        ('other', 'Other'),  # Option for custom skills
+    ]
+
+    name = models.CharField(max_length=100, choices=SKILL_CHOICES, unique=True)
     description = models.TextField(blank=True, null=True)
-    
 
     def __str__(self):
         return self.name
