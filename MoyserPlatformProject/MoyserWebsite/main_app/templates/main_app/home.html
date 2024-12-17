@@ -15,6 +15,7 @@
 <!-- Filter Engine -->
 <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
   <h2 class="text-2xl font-semibold text-white">Find Your Companion</h2>
+<<<<<<< HEAD
   <form method="get" action="{% url 'main_app:companions_list_view' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
     <div>
       <label for="city">City:</label>
@@ -39,6 +40,14 @@
           <option value="Tabuk" {% if search_city == 'Tabuk' %}selected{% endif %}>Tabuk</option>
           <option value="Hail" {% if search_city == 'Hail' %}selected{% endif %}>Hail</option>
           <option value="Qassim" {% if search_city == 'Qassim' %}selected{% endif %}>Qassim</option>
+=======
+  <form method="get" action="{% url 'booking_app:companion_list' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
+      <select name="city" class="border rounded-lg p-2">
+          <option value="" disabled selected>Select City</option>
+          {% for value, city in companion.CITY_CHOICES %}
+              <option value="{{ value }}">{{ city }}</option>
+          {% endfor %}
+>>>>>>> origin/HEAD
       </select>
   </div>
 

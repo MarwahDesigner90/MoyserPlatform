@@ -1,0 +1,27 @@
+{% extends "main_app/base.html" %}
+{% load static %}
+
+{% block title %}Feedback for {{ companion.companion.username }}{% endblock %}
+
+{% block content %}
+<div class="feedback-container">
+    <h1>Feedback for {{ companion.companion.username }}</h1>
+
+    {% if feedbacks %}
+        <ul class="feedback-list">
+            {% for feedback in feedbacks %}
+                <li class="feedback-item">
+                    <div class="feedback-header">
+                        <strong>Rate: {{ feedback.rating }} Stars</strong>
+                    </div>
+                    <div class="feedback-comment">
+                        <strong>Comment:</strong> {{ feedback.comment }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No feedback available.</p>
+    {% endif %}
+</div>
+{% endblock %}
