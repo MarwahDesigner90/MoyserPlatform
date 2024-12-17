@@ -16,33 +16,55 @@
 <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
   <h2 class="text-2xl font-semibold text-white">Find Your Companion</h2>
   <form method="get" action="{% url 'main_app:companions_list_view' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
-      <select name="city" class="border rounded-lg p-2">
-          <option value="" disabled selected>Select City</option>
-          {% for value, city in companion.CITY_CHOICES %}
-              <option value="{{ value }}">{{ city }}</option>
-          {% endfor %}
+    <div>
+      <label for="city">City:</label>
+      <select id="city" name="city">
+          <option value="">Any City</option>
+          <option value="Riyadh" {% if search_city == 'Riyadh' %}selected{% endif %}>Riyadh</option>
+          <option value="Al-kharj" {% if search_city == 'Al-kharj' %}selected{% endif %}>Al-kharj</option>
+          <option value="Al-majmaah" {% if search_city == 'Al-majmaah' %}selected{% endif %}>Al-majmaah</option>
+          <option value="Afif" {% if search_city == 'Afif' %}selected{% endif %}>Afif</option>
+          <option value="Jeddah" {% if search_city == 'Jeddah' %}selected{% endif %}>Jeddah</option>
+          <option value="Makkah" {% if search_city == 'Makkah' %}selected{% endif %}>Makkah</option>
+          <option value="Al-Taif" {% if search_city == 'Al-Taif' %}selected{% endif %}>Al-Taif</option>
+          <option value="Rabigh" {% if search_city == 'Rabigh' %}selected{% endif %}>Rabigh</option>
+          <option value="Al-Madinah" {% if search_city == 'Al-Madinah' %}selected{% endif %}>Al-Madinah</option>
+          <option value="Dammam" {% if search_city == 'Dammam' %}selected{% endif %}>Dammam</option>
+          <option value="Al-Ahsa" {% if search_city == 'Al-Ahsa' %}selected{% endif %}>Al-Ahsa</option>
+          <option value="Jizan" {% if search_city == 'Jizan' %}selected{% endif %}>Jizan</option>
+          <option value="Najran" {% if search_city == 'Najran' %}selected{% endif %}>Najran</option>
+          <option value="Al-jawf" {% if search_city == 'Al-jawf' %}selected{% endif %}>Al-jawf</option>
+          <option value="Abha" {% if search_city == 'Abha' %}selected{% endif %}>Abha</option>
+          <option value="Bisha" {% if search_city == 'Bisha' %}selected{% endif %}>Bisha</option>
+          <option value="Tabuk" {% if search_city == 'Tabuk' %}selected{% endif %}>Tabuk</option>
+          <option value="Hail" {% if search_city == 'Hail' %}selected{% endif %}>Hail</option>
+          <option value="Qassim" {% if search_city == 'Qassim' %}selected{% endif %}>Qassim</option>
       </select>
+  </div>
 
-      <select name="skills" class="border rounded-lg p-2">
-          <option value="" disabled selected>Select Skills</option>
-          {% for skill in skills %}
-              <option value="{{ skill.name }}">{{ skill.get_name_display }}</option>
-          {% endfor %}
+
+
+  <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+          <option value="">select your gendr </option>
+          <option value="M" {% if search_gender == 'M' %}selected{% endif %}>Male</option>
+          <option value="F" {% if search_gender == 'F' %}selected{% endif %}>Female</option>
       </select>
+  </div>
 
-      <select name="disability_type" class="border rounded-lg p-2">
-          <option value="" disabled selected>Select Disability Type</option>
-          <option value="VI">Visually Impaired</option>
-          <option value="HI">Hearing Impaired</option>
-          <option value="MD">Mobility Disability</option>
-          <option value="OD">Other Disability</option>
-          <!-- Add more types as needed -->
-      </select>
-
-      <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-amber-400 text-white hover:bg-sky-700 mt-5">
-          Find Companion
-      </button>
-  </form>
+  <div>
+    <label for="disability_type">Disability Type:</label>
+    <select id="disability_type" name="disability_type">
+        <option value="">select your gendr </option>
+        <option value="VI" {% if search_disability_type == 'VI' %}selected{% endif %}>Visually Impaired</option>
+        <option value="HI" {% if search_disability_type == 'HI' %}selected{% endif %}>Hearing Impaired</option>
+        <option value="MD" {% if search_disability_type == 'MD' %}selected{% endif %}>Mobility Disability</option>
+        <option value="OD" {% if search_disability_type == 'OD' %}selected{% endif %}>Other Disability</option>
+    </select>
+</div>
+  <button type="submit">Find Companions</button>
+</form>
 </div>
 
 <!--Heads up! 👋 This component comes with some `rtl` classes. Please remove them if they are not needed in your project.-->

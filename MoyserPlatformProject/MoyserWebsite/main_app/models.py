@@ -1,5 +1,7 @@
 from django.db import models
 from account_app.models import DisabilityUser
+# from .models import Testimonial
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Feedback(models.Model):
@@ -17,3 +19,4 @@ class Feedback(models.Model):
 
     def __str__(self):
         return f"Feedback from {self.disability_user.user.username}: {self.rating} Stars"
+    

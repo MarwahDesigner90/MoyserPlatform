@@ -70,3 +70,5 @@ class DisabilityUserAdmin(admin.ModelAdmin):
     get_gender.short_description = 'Gender'
 
 admin.site.register(DisabilityUser, DisabilityUserAdmin)
+
+
