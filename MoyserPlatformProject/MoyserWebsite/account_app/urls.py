@@ -12,7 +12,6 @@ urlpatterns = [
     path("profile/companion/", views.profile_companion_view, name="profile_companion_view"),
     path("signup/companion/", views.sign_up_companion_view, name="sign_up_companion_view"),
     path("profile/beneficiary/edit/", views.edit_beneficiary_profile_view, name="edit_beneficiary_profile_view"), 
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path("sign-in/", views.sign_in_user_view, name="sign_in_user_view"),
     path('log-out/', views.logout_view, name='logout_view'),
  

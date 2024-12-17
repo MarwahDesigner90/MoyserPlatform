@@ -26,6 +26,7 @@ def sign_up_beneficiary_view(request: HttpRequest):
         gender = request.POST.get("gender")
         age = request.POST.get("age")
         city = request.POST.get("city")
+        address = request.POST.get("address")
 
 
         try:
@@ -37,6 +38,7 @@ def sign_up_beneficiary_view(request: HttpRequest):
                 gender=gender,
                 age=age,
                 city=city,
+                address=address,
                 
             )
             messages.success(request, "Beneficiary account created successfully!")
