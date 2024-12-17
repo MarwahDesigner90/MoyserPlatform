@@ -73,6 +73,7 @@ class Companion(models.Model):
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     hour_rent = models.FloatField()
+    email = models.EmailField(max_length=254)
     skills = models.ManyToManyField(Skill)
     city = models.CharField(max_length=50, choices=CITY_CHOICES)
     certification = models.FileField(upload_to='pdf/', blank=True, null=True)
@@ -122,12 +123,13 @@ class DisabilityUser(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=254)
     phone_number = models.CharField(max_length=15, blank=True) 
     disability_type = models.CharField(max_length=2, choices=DISABILITY_TYPE_CHOICES)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     age = models.PositiveIntegerField(null=True)  
     city = models.CharField(max_length=50, choices=CITY_CHOICES, default='Riyadh')
-
+    address = models.TextField(blank=True)
     image = models.ImageField(upload_to='images/', default='images/default.jpeg')
 
     def __str__(self):
