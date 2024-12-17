@@ -15,7 +15,7 @@
 <!-- Filter Engine -->
 <div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
   <h2 class="text-2xl font-semibold text-white">Find Your Companion</h2>
-  <form method="get" action="{% url 'main_app:companions_list_view' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
+  <form method="get" action="{% url 'booking_app:companion_list' %}" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
       <select name="city" class="border rounded-lg p-2">
           <option value="" disabled selected>Select City</option>
           {% for value, city in companion.CITY_CHOICES %}

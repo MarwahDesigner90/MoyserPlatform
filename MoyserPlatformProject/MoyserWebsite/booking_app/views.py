@@ -126,9 +126,9 @@ def companion_list_view(request):
     search_city = request.GET.get('city', '')
     search_gender = request.GET.get('gender', '')
 
-    # Apply filters based on the search query
     companions = Companion.objects.filter(availability=True)
 
+    # Apply filters based on the search query
     if search_city:
         companions = companions.filter(city__icontains=search_city)
 
@@ -224,3 +224,13 @@ def view_feedback_view(request, companion_id):
     companion = get_object_or_404(Companion, id=companion_id)
     feedbacks = Feedback.objects.filter(companion=companion).all()
     return render(request, "booking_app/view_feedback.html", {"companion": companion, "feedbacks": feedbacks})
+
+@login_required
+def booking_history_view(request):
+    if request.user.role == "beneficiary":
+        return booking_history_user_view(request)
+    elif request.user.role == "companion":
+        return booking_history_companion_view(request)
+    else:
+        messages.error(request, "You don't have access to this page.")
+        return redirect("booking_app:home_view")

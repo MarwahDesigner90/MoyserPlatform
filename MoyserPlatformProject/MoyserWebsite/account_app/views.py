@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from .models import User, Companion, DisabilityUser, Skill
+from django.contrib.auth import logout
 
 
 # Profile for Beneficiary
@@ -166,3 +167,7 @@ def edit_beneficiary_profile_view(request: HttpRequest):
         return redirect("account_app:profile_beneficiary_view")
 
     return render(request, "account_app/edit_beneficiary_profile.html", {"disability_user": disability_user})
+
+def logout_view(request):
+    logout(request)
+    return redirect('main_app:home_view')
