@@ -35,13 +35,13 @@
                             <td>{{ booking.address }}</td>
                             <td>{{ booking.status }}</td>
                             <td class="companion-booking-actions">
-                                {% if booking.status == "pending" %}
+                                {% if booking.status == "CONFIRMED" or booking.status == "pending"%}
                                     <div class="action-buttons">
-                                        <form method="POST" style="display:inline;">
+                                        <!-- <form method="POST" style="display:inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="booking_id" value="{{ booking.id }}">
                                             <button type="submit" name="action" value="accept" class="companion-booking-action-btn">Accept</button>
-                                        </form>
+                                        </form> -->
                                         <form method="POST" style="display:inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="booking_id" value="{{ booking.id }}">
