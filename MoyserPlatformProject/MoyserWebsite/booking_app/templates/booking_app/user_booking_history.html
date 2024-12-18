@@ -3,7 +3,13 @@
 {% block title %}Booking History{% endblock %}
 
 {% block content %}
-    
+{% if messages %}
+  <div class="alert alert-warning">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}    
     <div class="booking-history-container">
         <h1 class="page-title">My Booking History</h1>
 
@@ -23,7 +29,7 @@
                     {% for booking in user_bookings %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ booking.companion.username }}</td>
+                        <td>{{ booking.companion.companion.username }}</td>
                         <td>{{ booking.booking_date_time }}</td>
                         <td>{{ booking.address }}</td>
                         <td>{{ booking.status }}</td>

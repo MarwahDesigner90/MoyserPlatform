@@ -14,6 +14,7 @@ class User(AbstractUser):
 
     ]
     role = models.CharField(max_length=15, choices=ROLE_CHOICES, default='beneficiary')
+    
 
     def __str__(self):
         return self.username
@@ -73,10 +74,9 @@ class Companion(models.Model):
     bank_account = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     hour_rent = models.FloatField()
-    email = models.EmailField(max_length=254)
     skills = models.ManyToManyField(Skill)
     city = models.CharField(max_length=50, choices=CITY_CHOICES)
-    certification = models.FileField(upload_to='pdf/', blank=True, null=True)
+    certification = models.FileField(upload_to='pdf/', null=True)
     phone_number = models.CharField(max_length=15)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     age = models.IntegerField()

@@ -43,10 +43,14 @@
             <p><strong>City:</strong> {{ companion.city }}</p>
             <p><strong>Hourly Rent:</strong> {{ companion.hour_rent }} SAR</p>
             <p><strong>Age:</strong> {{ companion.age }}</p>
-
-            <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
-                <button>Book this Companion</button>
-            </a>
+            <p><strong>Gender:</strong> {{ companion.gender }}</p>
+            
+            {% if request.user.disabilityuser %}
+                <!-- Display this button only if the user is a DisabilityUser -->
+                <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
+                    <button>Book this Companion</button>
+                </a>
+            {% endif %}
 
             <!-- View Feedback Button -->
             <a href="{% url 'booking_app:view_feedback' companion.id %}" class="view-feedback-button">

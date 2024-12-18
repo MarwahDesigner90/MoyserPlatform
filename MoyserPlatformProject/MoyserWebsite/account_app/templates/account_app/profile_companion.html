@@ -28,11 +28,11 @@
                 <div class="space-y-4">
                     <div>
                         <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Full Name:</p>
-                        <p class="text-gray-700 dark:text-gray-300">{{ companion.user.first_name }} {{ companion.user.last_name }}</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.companion.first_name }} {{ companion.companion.last_name }}</p>
                     </div>
                     <div>
                         <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Username:</p>
-                        <p class="text-gray-700 dark:text-gray-300">{{ companion.user.username }}</p>
+                        <p class="text-gray-700 dark:text-gray-300">{{ companion.companion.username }}</p>
                     </div>
                     <div>
                         <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Phone Number:</p>
@@ -70,8 +70,8 @@
                         class="w-full text-center text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800">
                         Edit Profile
                     </a>
-                    {% if user.is_authenticated %}
-                    <form action="{% url 'account_app:logout' %}" method="post" class="flex justify-center">
+                    <!-- {% if user.is_authenticated %}
+                    <form action="{% url 'account_app:logout_view' %}" method="post" class="flex justify-center">
                         {% csrf_token %}
                         <button 
                             type="submit" 
@@ -79,7 +79,7 @@
                             Log Out
                         </button>
                     </form>
-                    {% endif %}
+                    {% endif %} -->
                 </div>
             </div>
         </div>

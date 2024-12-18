@@ -1,0 +1,13 @@
+{% extends "main_app/base.html" %}
+
+{% block content %}
+<h1>Delete Companion: {{ companion.companion.username }}</h1>
+
+<p>Are you sure you want to delete this companion?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'dashboard_app:admin_dashboard_view' %}">Cancel</a>
+</form>
+{% endblock %}

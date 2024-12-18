@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'main_app/styles/style.css' %}">
     <title>Base page</title>
+    <!-- Font Awesome for Profile Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -14,55 +16,93 @@
 		<a class="text-3xl font-bold leading-none" href="#">
             <img src="{% static 'images/MoyserLogo.png' %}" alt="logo" class="h-20 w-35" />
 		</a>
+		<!-- Mobile menu button -->
 		<div class="lg:hidden">
-			<button class="navbar-burger flex items-center text-blue-600 p-3">
+			<button id="mobileMenuButton" class="navbar-burger flex items-center text-blue-600 p-3">
 				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 					<title>Mobile menu</title>
 					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
 				</svg>
 			</button>
 		</div>
-		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+		<!-- Desktop menu -->
+		<ul class="hidden lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6 list-none flex-1 justify-center">
 			<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'main_app:home_view'%}">Home</a></li>
-			<li class="text-gray-300">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-				</svg>
-			</li>
-			<li><a class="text-sm text-sky-600 font-bold" href= "{% url 'booking_app:companion_list'%}">Find Companion</a></li>
-			<li class="text-gray-300">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-				</svg>
-			</li>
-			
-			<ul>
-				{% if user.role == 'beneficiary' %}
-					<li class="text-sm text-gray-400 hover:text-sky-600 font-bold">
-						<a href="{% url 'booking_app:booking_history_user' %}">Booking History (User)</a>
-					</li>
-				{% elif user.role == 'companion' %}
-					<li class="text-sm text-gray-400 hover:text-sky-600 font-bold">
-						<a href="{% url 'booking_app:booking_history_companion' %}">Booking History (Companion)</a>
-					</li>
+			<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:companion_list'%}">Find Companion</a></li>
+			{% if request.user.is_authenticated %}
+				{% if user.role == 'beneficiary' and not user.is_staff%}
+					<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:booking_history_user' %}">Booking History</a></li>
+				{% elif user.role == 'companion' and not user.is_staff %}
+					<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:booking_history_companion' %}">Booking History</a></li>
 				{% endif %}
-			</ul>
-			
-			
-			
+			{% endif %}
 		</ul>
 
-        {% if request.user.is_authenticated %}
-            <!-- Display Logout Button if User is Logged In -->
-            <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-sky-700 text-white text-sm font-bold rounded-xl transition duration-200" href="{% url 'account_app:logout_view' %}">Logout</a>
-        {% else %}
-            <!-- Display Sign In and Sign Up Buttons if User is Not Logged In -->
-            <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-sky-700 text-white text-sm font-bold rounded-xl transition duration-200" href="{% url 'account_app:sign_in_user_view' %}">Sign In</a>
-            <a class="hidden lg:inline-block py-2 px-6 bg-sky-700 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="{% url 'account_app:sign_up_beneficiary_view' %}">Sign up</a>
-        {% endif %}
+        <ul class="flex items-center space-x-6">
+            {% if request.user.is_authenticated %}
+                {% if not user.is_staff %}
+                    {% if user.role == 'beneficiary' %}
+                        <li class="list-none">
+                            <a href="{% url 'account_app:profile_beneficiary_view' %}" class="flex items-center text-xl text-gray-400 hover:text-sky-600 font-bold py-3 px-6">
+                                <i class="fas fa-user-circle mr-2 text-gray-400 hover:text-sky-600"></i> Profile
+                            </a>
+                        </li>
+                    {% elif user.role == 'companion' %}
+                        <li class="list-none">
+                            <a href="{% url 'account_app:profile_companion_view' %}" class="flex items-center text-xl text-gray-400 hover:text-sky-600 font-bold py-3 px-6">
+                                <i class="fas fa-user-circle mr-2 text-gray-400 hover:text-sky-600"></i> Profile
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+                <!-- Display Logout Button if User is Logged In -->
+                <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-sky-700 text-white text-sm font-bold rounded-xl transition duration-200" href="{% url 'account_app:logout_view' %}">Logout</a>
+            {% else %}
+                <!-- Sign Up Dropdown (Mobile and Desktop) -->
+                <li class="relative">
+                    <button id="signUpBtn" class="py-2 px-6 bg-sky-700 text-white text-sm font-bold rounded-xl transition duration-200">
+                        Sign Up
+                    </button>
+                    <div id="signUpDropdown" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                        <div class="py-1">
+                            <a href="{% url 'account_app:sign_up_companion_view' %}" class="text-gray-700 block px-4 py-2 text-sm">Sign up as Companion</a>
+                            <a href="{% url 'account_app:sign_up_beneficiary_view' %}" class="text-gray-700 block px-4 py-2 text-sm">Sign up as Beneficiary</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- Sign In Button -->
+                <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-sky-700 text-white text-sm font-bold rounded-xl transition duration-200" href="{% url 'account_app:sign_in_user_view' %}">Sign In</a>
+            {% endif %}
+        </ul>
+
+		<!-- Mobile Menu -->
+		<div id="mobileMenu" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 hidden">
+			<div class="relative bg-white w-4/5 h-full p-6">
+				<ul class="space-y-6">
+					<li><a href="{% url 'main_app:home_view'%}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Home</a></li>
+					<li><a href="{% url 'booking_app:companion_list'%}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Find Companion</a></li>
+					{% if request.user.is_authenticated and not user.is_staff %}
+						{% if user.role == 'beneficiary' %}
+							<li><a href="{% url 'booking_app:booking_history_user' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Booking History</a></li>
+							<li><a href="{% url 'account_app:profile_beneficiary_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Profile</a></li>
+						{% elif user.role == 'companion' %}
+							<li><a href="{% url 'booking_app:booking_history_companion' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Booking History</a></li>
+							<li><a href="{% url 'account_app:profile_companion_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Profile</a></li>
+						{% endif %}
+					{% endif %}
+					<li><a href="{% url 'account_app:logout_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Logout</a></li>
+					{% if not request.user.is_authenticated %}
+						<li><a href="{% url 'account_app:sign_in_user_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Sign In</a></li>
+						<li><a href="{% url 'account_app:sign_up_companion_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Sign up as Companion</a></li>
+						<li><a href="{% url 'account_app:sign_up_beneficiary_view' %}" class="text-sm text-gray-400 hover:text-sky-600 font-bold">Sign up as Beneficiary</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
 	</nav>
 
-	<div class="relative overflow-hidden ">
+	<div class="relative overflow-hidden">
 		<div aria-hidden="true" class="flex absolute -top-96 start-1/2 transform -translate-x-1/2">
 			<div class="bg-gradient-to-tl from-sky-100 via-sky-200 to-sky-100 blur-3xl w-[90rem] h-[50rem] rounded-full origin-top-left -rotate-12 -translate-x-[15rem]"></div>
 		</div>
@@ -82,45 +122,36 @@
     </footer>
 
     <script>
-    // Burger menus
+    // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
-        // open
-        const burger = document.querySelectorAll('.navbar-burger');
-        const menu = document.querySelectorAll('.navbar-menu');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        if (burger.length && menu.length) {
-            for (var i = 0; i < burger.length; i++) {
-                burger[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close the mobile menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
             }
-        }
+        });
 
-        // close
-        const close = document.querySelectorAll('.navbar-close');
-        const backdrop = document.querySelectorAll('.navbar-backdrop');
+        // Sign Up Dropdown Toggle Logic (Mobile and Desktop)
+        const signUpBtn = document.getElementById('signUpBtn');
+        const signUpDropdown = document.getElementById('signUpDropdown');
 
-        if (close.length) {
-            for (var i = 0; i < close.length; i++) {
-                close[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
+        signUpBtn.addEventListener('click', function() {
+            signUpDropdown.classList.toggle('hidden');
+        });
+
+        // Close the dropdown when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!signUpBtn.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                signUpDropdown.classList.add('hidden');
             }
-        }
-
-        if (backdrop.length) {
-            for (var i = 0; i < backdrop.length; i++) {
-                backdrop[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
+        });
     });
     </script>
 </body>

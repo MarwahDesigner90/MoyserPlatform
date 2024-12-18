@@ -69,6 +69,7 @@ class DisabilityUserAdmin(admin.ModelAdmin):
         return obj.get_gender_display()
     get_gender.short_description = 'Gender'
 
+# admin.site.register(DisabilityUser, DisabilityUserAdmin)
 admin.site.register(DisabilityUser, DisabilityUserAdmin)
 
 
