@@ -22,4 +22,3 @@ admin.site.register(User, CustomUserAdmin)
 
 
 admin.site.register(Skill)
-admin.site.register(Companion)
