@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login ,logout
 from .models import User, Companion, DisabilityUser, Skill
-from django.contrib.auth import logout
 
 
 #Profile for Beneficiary
@@ -82,7 +81,7 @@ def profile_companion_view(request: HttpRequest):
 def sign_up_companion_view(request: HttpRequest):
     cities = [choice[0] for choice in DisabilityUser.CITY_CHOICES]  # Fetch city list
     skills = Skill.objects.all()
-    
+
     if request.method == "POST":
         username = request.POST.get("username")
         first_name = request.POST.get("first_name")
