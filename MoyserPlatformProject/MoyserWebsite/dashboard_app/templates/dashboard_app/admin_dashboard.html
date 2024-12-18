@@ -12,7 +12,7 @@
                 <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Phone Number</th>
                 <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Certificate</th>
                 <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Skills</th>
-                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Email</th>
+                <!-- <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">booking history</th> -->
                 <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Availability</th>
                 <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Actions</th>
             </tr>
@@ -32,7 +32,7 @@
                     {% endif %}
                 </td>
                 <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.skills.all|join:", " }}</td>
-                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.companion.email }}</td>
+                <!-- <td style="padding: 12px; text-align: left; border: 1px solid #ddd;"></td> -->
                 <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">
                     {% if companion.availability %}
                         Available

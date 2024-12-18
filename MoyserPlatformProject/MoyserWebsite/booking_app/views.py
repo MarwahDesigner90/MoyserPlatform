@@ -87,7 +87,7 @@ def booking_history_companion_view(request):
         messages.error(request, "You can't access this page.")
         return redirect('booking_app:companion_list')
 
-    companion_bookings = Booking.objects.filter(companion=companion.companion)
+    companion_bookings = Booking.objects.filter(companion=companion)
 
     if request.method == 'POST':
         booking_id = request.POST.get('booking_id')

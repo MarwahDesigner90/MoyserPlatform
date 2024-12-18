@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User , Skill
+from .models import User , Skill, Companion
 
 class CustomUserAdmin(UserAdmin):
     model = User
@@ -22,3 +22,4 @@ admin.site.register(User, CustomUserAdmin)
 
 
 admin.site.register(Skill)
+admin.site.register(Companion)
