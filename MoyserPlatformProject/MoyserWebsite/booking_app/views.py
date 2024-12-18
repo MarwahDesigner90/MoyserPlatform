@@ -71,7 +71,7 @@ def booking_history_user_view(request):
     user_bookings = Booking.objects.filter(user=request.user)
     
     # Ensure only confirmed bookings are visible for feedback
-    user_bookings = user_bookings.filter(status="CONFIRMED")
+    # user_bookings = user_bookings.filter(status="CONFIRMED")
     
     context = {
         "user_bookings": user_bookings,
@@ -186,7 +186,7 @@ def payment_view(request, booking_id):
 
     context = {
         "booking": booking,
-        "amount": amount / 100,  # Convert back to dollars for display
+        "amount": amount / 100,  
         "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
     }
     return render(request, "booking_app/payment.html", context)

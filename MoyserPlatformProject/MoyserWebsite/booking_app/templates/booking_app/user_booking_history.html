@@ -38,6 +38,11 @@
                                 <a href="{% url 'booking_app:add_feedback' booking.companion.id %}" class="feedback-button">
                                     <button>Leave Feedback</button>
                                 </a>
+                                {% else%}{% if booking.status == 'pending'%}
+                                <a href="{% url 'booking_app:payment' booking.id %}" class="feedback-button">
+                                    <button>Pay Now!</button>
+                                </a>
+                                {% endif %}
                             {% endif %}
                         </td>
                     </tr>
