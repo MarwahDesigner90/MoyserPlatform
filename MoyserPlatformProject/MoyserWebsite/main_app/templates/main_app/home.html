@@ -3,73 +3,45 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <!-- Title -->
-<div class="mt-5 max-w-2xl">
-  <h1 class="block font-semibold text-gray-800 text-3xl md:text-5xl lg:text-6xl">
-   Welcome to Moyser, your premier platform for accessible support.
-   </h1>
+<div class="flex items-center justify-center">
+  <div class="max-w-2xl text-center">
+    <h1 class="block font-semibold text-gray-800 text-3xl md:text-5xl lg:text-6xl">
+      Welcome to Moyser, your premier platform for accessible support.
+    </h1>
     <p class="mt-4 text-lg text-gray-600">
       We connect individuals with disabilities to qualified companions, ensuring a seamless experience in public spaces.
-      </p>
- </div>
-
-<!-- Filter Engine
-<div class="mt-10 p-8 rounded-full bg-sky-500 shadow-xl shadow-sky-300 border border-sky-900">
-  <h2 class="text-2xl font-semibold text-white">Find Your Companion</h2>
-  <form method="get" action="" class="mt-5 flex flex-col sm:flex-row justify-center gap-4">
-    <div>
-      <label for="city">City:</label>
-
-      <select id="city" name="city">
-          <option value="">Any City</option>
-          <option value="Riyadh" {% if search_city == 'Riyadh' %}selected{% endif %}>Riyadh</option>
-          <option value="Al-kharj" {% if search_city == 'Al-kharj' %}selected{% endif %}>Al-kharj</option>
-          <option value="Al-majmaah" {% if search_city == 'Al-majmaah' %}selected{% endif %}>Al-majmaah</option>
-          <option value="Afif" {% if search_city == 'Afif' %}selected{% endif %}>Afif</option>
-          <option value="Jeddah" {% if search_city == 'Jeddah' %}selected{% endif %}>Jeddah</option>
-          <option value="Makkah" {% if search_city == 'Makkah' %}selected{% endif %}>Makkah</option>
-          <option value="Al-Taif" {% if search_city == 'Al-Taif' %}selected{% endif %}>Al-Taif</option>
-          <option value="Rabigh" {% if search_city == 'Rabigh' %}selected{% endif %}>Rabigh</option>
-          <option value="Al-Madinah" {% if search_city == 'Al-Madinah' %}selected{% endif %}>Al-Madinah</option>
-          <option value="Dammam" {% if search_city == 'Dammam' %}selected{% endif %}>Dammam</option>
-          <option value="Al-Ahsa" {% if search_city == 'Al-Ahsa' %}selected{% endif %}>Al-Ahsa</option>
-          <option value="Jizan" {% if search_city == 'Jizan' %}selected{% endif %}>Jizan</option>
-          <option value="Najran" {% if search_city == 'Najran' %}selected{% endif %}>Najran</option>
-          <option value="Al-jawf" {% if search_city == 'Al-jawf' %}selected{% endif %}>Al-jawf</option>
-          <option value="Abha" {% if search_city == 'Abha' %}selected{% endif %}>Abha</option>
-          <option value="Bisha" {% if search_city == 'Bisha' %}selected{% endif %}>Bisha</option>
-          <option value="Tabuk" {% if search_city == 'Tabuk' %}selected{% endif %}>Tabuk</option>
-          <option value="Hail" {% if search_city == 'Hail' %}selected{% endif %}>Hail</option>
-          <option value="Qassim" {% if search_city == 'Qassim' %}selected{% endif %}>Qassim</option>
-      </select>
-  </div> -->
-
-
-
-  <!-- <div>
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender">
-          <option value="">select your gendr </option>
-          <option value="M" {% if search_gender == 'M' %}selected{% endif %}>Male</option>
-          <option value="F" {% if search_gender == 'F' %}selected{% endif %}>Female</option>
-      </select>
+    </p>
   </div>
+</div>
 
-  <div>
-    <label for="disability_type">Disability Type:</label>
-    <select id="disability_type" name="disability_type">
-        <option value="">select your gendr </option>
-        <option value="VI" {% if search_disability_type == 'VI' %}selected{% endif %}>Visually Impaired</option>
-        <option value="HI" {% if search_disability_type == 'HI' %}selected{% endif %}>Hearing Impaired</option>
-        <option value="MD" {% if search_disability_type == 'MD' %}selected{% endif %}>Mobility Disability</option>
-        <option value="OD" {% if search_disability_type == 'OD' %}selected{% endif %}>Other Disability</option>
-    </select>
-</div> -->
-    <a href="{% url 'booking_app:companion_list' %}" class="mt-4 py-2 px-6 bg-blue-600 text-white font-bold rounded-xl inline-block text-center">
+<!-- Filter Engine -->
+<div class="mt-10 p-8 rounded-full bg-sky-600 shadow-xl shadow-sky-300 border border-sky-900">
+  <h2 class="text-2xl font-semibold text-white text-center">Find Your Companion</h2>
+  <form method="get" action="" class="mt-5 flex flex-col sm:flex-row justify-center items-center gap-4">
+
+    <div class="flex flex-col items-center">
+      <label for="city" class="text-white">City:</label>
+      <select id="city" name="city" class="mt-1 rounded-md p-2">
+        <option value="">Any City</option>  <!-- Default option -->
+        {% for value, key in cities %}
+        <option value="{{ value }}" {% if search_city == value %}selected{% endif %}>{{ key }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <label for="gender" class="text-white">Gender:</label>
+      <select id="gender" name="gender" class="mt-1 rounded-md p-2">
+        <option value="">Select your gender</option>  <!-- Default option -->
+        {% for value, label in genders %}
+        <option value="{{ value }}" {% if search_gender == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="mt-4 bg-amber-400 text-white rounded-full py-2 px-4 hover:bg-sky-900 transition duration-200">
       Find Companions
-    </a>
-
-
-</form>
+    </button>
+  </form>
 </div>
 
 <!--Heads up! 👋 This component comes with some `rtl` classes. Please remove them if they are not needed in your project.-->
@@ -500,4 +472,51 @@
   keenSliderNext.addEventListener('click', () => keenSlider.next())
 </script>
 
+
+    <!-- <div>
+      <label for="city">City:</label>
+      <select id="city" name="city">
+          <option value="">Any City</option>
+          <option value="Riyadh" {% if search_city == 'Riyadh' %}selected{% endif %}>Riyadh</option>
+          <option value="Al-kharj" {% if search_city == 'Al-kharj' %}selected{% endif %}>Al-kharj</option>
+          <option value="Al-majmaah" {% if search_city == 'Al-majmaah' %}selected{% endif %}>Al-majmaah</option>
+          <option value="Afif" {% if search_city == 'Afif' %}selected{% endif %}>Afif</option>
+          <option value="Jeddah" {% if search_city == 'Jeddah' %}selected{% endif %}>Jeddah</option>
+          <option value="Makkah" {% if search_city == 'Makkah' %}selected{% endif %}>Makkah</option>
+          <option value="Al-Taif" {% if search_city == 'Al-Taif' %}selected{% endif %}>Al-Taif</option>
+          <option value="Rabigh" {% if search_city == 'Rabigh' %}selected{% endif %}>Rabigh</option>
+          <option value="Al-Madinah" {% if search_city == 'Al-Madinah' %}selected{% endif %}>Al-Madinah</option>
+          <option value="Dammam" {% if search_city == 'Dammam' %}selected{% endif %}>Dammam</option>
+          <option value="Al-Ahsa" {% if search_city == 'Al-Ahsa' %}selected{% endif %}>Al-Ahsa</option>
+          <option value="Jizan" {% if search_city == 'Jizan' %}selected{% endif %}>Jizan</option>
+          <option value="Najran" {% if search_city == 'Najran' %}selected{% endif %}>Najran</option>
+          <option value="Al-jawf" {% if search_city == 'Al-jawf' %}selected{% endif %}>Al-jawf</option>
+          <option value="Abha" {% if search_city == 'Abha' %}selected{% endif %}>Abha</option>
+          <option value="Bisha" {% if search_city == 'Bisha' %}selected{% endif %}>Bisha</option>
+          <option value="Tabuk" {% if search_city == 'Tabuk' %}selected{% endif %}>Tabuk</option>
+          <option value="Hail" {% if search_city == 'Hail' %}selected{% endif %}>Hail</option>
+          <option value="Qassim" {% if search_city == 'Qassim' %}selected{% endif %}>Qassim</option>
+      </select>
+  </div> -->
+
+
+  <!-- <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+          <option value="">select your gendr </option>
+          <option value="M" {% if search_gender == 'M' %}selected{% endif %}>Male</option>
+          <option value="F" {% if search_gender == 'F' %}selected{% endif %}>Female</option>
+      </select>
+  </div> -->
+
+    <!-- <div>
+    <label for="disability_type">Disability Type:</label>
+    <select id="disability_type" name="disability_type">
+        <option value="">select your gendr </option>
+        <option value="VI" {% if search_disability_type == 'VI' %}selected{% endif %}>Visually Impaired</option>
+        <option value="HI" {% if search_disability_type == 'HI' %}selected{% endif %}>Hearing Impaired</option>
+        <option value="MD" {% if search_disability_type == 'MD' %}selected{% endif %}>Mobility Disability</option>
+        <option value="OD" {% if search_disability_type == 'OD' %}selected{% endif %}>Other Disability</option>
+    </select>
+</div> -->
 {% endblock %}
