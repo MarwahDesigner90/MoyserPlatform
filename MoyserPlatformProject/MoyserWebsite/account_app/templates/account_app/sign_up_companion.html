@@ -18,8 +18,6 @@
                 src="{% static 'images/MoyserLogo.png' %}" 
                 alt="Moyser Logo">
         </a>
-        
-        
         <div class="w-full max-w-3xl bg-sky-50 rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700 border border-sky-400">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -97,54 +95,49 @@
                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                    placeholder="Rent for an hour">
                         </div>
-                        <div>
-                            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                            <select name="city" id="city" required 
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="Riyadh">Riyadh</option>
-                                <option value="Al-kharj">Al-kharj</option>
-                                <option value="Al-majmaah">Al-majmaah</option>
-                                <option value="Afif">Afif</option>
-                                <option value="Jeddah">Jeddah</option>
-                                <option value="Makkah">Makkah</option>
-                                <option value="Al-Taif">Al-Taif</option>
-                                <option value="Rabigh">Rabigh</option>
-                                <option value="Al-Madinah">Al-Madinah</option>
-                                <option value="Dammam">Dammam</option>
-                                <option value="Al-Ahsa">Al-Ahsa</option>
-                                <option value="Jizan">Jizan</option>
-                                <option value="Najran">Najran</option>
-                                <option value="Al-jawf">Al-jawf</option>
-                                <option value="Abha">Abha</option>
-                                <option value="Bisha">Bisha</option>
-                                <option value="Tabuk">Tabuk</option>
-                                <option value="Hail">Hail</option>
-                                <option value="Qassim">Qassim</option>
-                            </select>
-                        </div>
+                        <!-- City -->
+                    <div>
+                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                        <select 
+                            name="city" 
+                            id="city" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="" disabled selected>Select your city</option>
+                            {% for city in cities %}
+                                <option value="{{ city }}">{{ city }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                         <div>
                             <label for="certification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Certification (PDF)</label>
                             <input type="file" name="certification" id="certification" 
                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                    accept=".pdf">
                         </div>
-                        <div class="flex flex-col items-start col-span-2">
-                            <label for="skills" class="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Skills</label>
-                            <div id="skills" class="grid grid-cols-2 gap-x-12 gap-y-2">
+                        <div class="flex flex-col col-span-2">
+                            <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Skills
+                            </label>
+                            <div id="skills" class="grid grid-cols-2 gap-4">
                                 {% for skill in skills %}
                                     <div class="flex items-center">
                                         <input 
                                             type="checkbox" 
                                             name="skills" 
                                             id="skill_{{ skill.id }}" 
-                                            value="{{ skill.id }}" 
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                            value="{{ skill.id }}"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                        >
                                         <label for="skill_{{ skill.id }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                            {{ skill.name }}
+                                            {{ skill.get_name_display }}
                                         </label>
                                     </div>
+                                {% empty %}
+                                    <p class="text-sm text-gray-500">No skills available.</p>
                                 {% endfor %}
                             </div>
+                        </div>
+                        
                         </div>
                     </div>
 
@@ -165,6 +158,6 @@
             </div>
         </div>
 
-        <div class="my-8"></div> <!-- Space after the form -->
+        <div class="my-8"></div> 
     </div>
 {% endblock %}

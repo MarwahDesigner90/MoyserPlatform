@@ -26,6 +26,8 @@ def profile_beneficiary_view(request: HttpRequest):
 
 # Sign Up for Beneficiary
 def sign_up_beneficiary_view(request: HttpRequest):
+    cities = [choice[0] for choice in DisabilityUser.CITY_CHOICES]  
+
     if request.method == "POST":
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -38,31 +40,30 @@ def sign_up_beneficiary_view(request: HttpRequest):
         city = request.POST.get("city")
         address = request.POST.get("address")
 
-
         try:
             user = User.objects.create_user(username=username, password=password, role="beneficiary")
             user.first_name = first_name
             user.last_name = last_name
             user.save()
 
-            # user = User.objects.create_user(username=username, password=password, role="beneficiary")
             DisabilityUser.objects.create(
                 user=user,
+                email=user.email,
                 phone_number=phone_number,
                 disability_type=disability_type,
                 gender=gender,
                 age=age,
                 city=city,
                 address=address,
-                
             )
             messages.success(request, "Beneficiary account created successfully!")
             return redirect("account_app:sign_in_user_view")
         except Exception as e:
             messages.error(request, f"Error creating account: {e}")
-            return render(request, "account_app/sign_up_beneficiary.html")
+            return render(request, "account_app/sign_up_beneficiary.html", {"cities": cities})
 
-    return render(request, "account_app/sign_up_beneficiary.html")
+    return render(request, "account_app/sign_up_beneficiary.html", {"cities": cities})
+
 
 
 @login_required
@@ -78,63 +79,18 @@ def profile_companion_view(request: HttpRequest):
 
 
 # Sign Up for Companion
-# def sign_up_companion_view(request: HttpRequest):
-#     if request.method == "POST":
-#         username = request.POST.get("username", "").strip()
-#         if not username:
-#             messages.error(request, "Username is required.")
-#             return render(request, "account_app/sign_up_companion.html")
-#         first_name = request.POST.get("first_name")
-#         last_name = request.POST.get("last_name")
-#         password = request.POST.get("password")
-#         bank_account = request.POST.get("bank_account")
-#         hour_rent = request.POST.get("hour_rent")
-#         skills = request.POST.getlist("skills")
-#         city = request.POST.get("city")
-#         certification = request.FILES.get("certification")
-#         phone_number = request.POST.get("phone_number")
-#         gender = request.POST.get("gender")
-#         age = request.POST.get("age")
-
-#         try:
-#             user = User.objects.create_user(username=username, password=password, role="companion")
-#             companion = Companion.objects.create(
-#                 first_name=first_name,
-#                 last_name=last_name,
-#                 companion=user,
-#                 bank_account=bank_account,
-#                 #availability=availability, #check this plz
-#                 hour_rent=hour_rent,
-#                 city=city,
-#                 certification=certification,
-#                 phone_number=phone_number,
-#                 gender=gender,
-#                 age=age
-#             )
-#             companion.skills.set(Skill.objects.filter(id__in=skills))
-#             messages.success(request, "Companion account created successfully!")
-#             return redirect("account_app:sign_in_user_view")
-#         except Exception as e:
-#             print(e)
-#             messages.error(request, f"Error creating account: {e}")
-#             return render(request, "account_app/sign_up_companion.html")
-
-#     skills = Skill.objects.all()
-#     return render(request, "account_app/sign_up_companion.html", {"skills": skills})
-
-# Sign Up for Companion
 def sign_up_companion_view(request: HttpRequest):
+    cities = [choice[0] for choice in DisabilityUser.CITY_CHOICES]  # Fetch city list
+    skills = Skill.objects.all()
+    
     if request.method == "POST":
-        username = request.POST.get("username", "").strip()
-        if not username:
-            messages.error(request, "Username is required.")
-            return render(request, "account_app/sign_up_companion.html")
+        username = request.POST.get("username")
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
         password = request.POST.get("password")
         bank_account = request.POST.get("bank_account")
         hour_rent = request.POST.get("hour_rent")
-        skills = request.POST.getlist("skills")
+        skills = request.POST.getlist("skills")  # Multi-select skills
         city = request.POST.get("city")
         certification = request.FILES.get("certification")
         phone_number = request.POST.get("phone_number")
@@ -142,10 +98,10 @@ def sign_up_companion_view(request: HttpRequest):
         age = request.POST.get("age")
 
         try:
-            user = User.objects.create_user(username=username, password=password, role="companion")
+            user = User.objects.create_user(username=username, password=password)
             user.first_name = first_name
             user.last_name = last_name
-            user.save()  
+            user.save()
 
             companion = Companion.objects.create(
                 companion=user,
@@ -157,18 +113,16 @@ def sign_up_companion_view(request: HttpRequest):
                 gender=gender,
                 age=age
             )
-            companion.skills.set(Skill.objects.filter(id__in=skills))  # Set selected skills
+
+            # Assign selected skills
+            companion.skills.set(Skill.objects.filter(id__in=skills))
             messages.success(request, "Companion account created successfully!")
             return redirect("account_app:sign_in_user_view")
         except Exception as e:
-            print(e)
-            messages.error(request, f"Error creating account: {e}")
-            return render(request, "account_app/sign_up_companion.html")
+            print(f"Error: {e}")
+            messages.error(request, f"Error: {e}")
 
-    skills = Skill.objects.all()
-    return render(request, "account_app/sign_up_companion.html", {"skills": skills})
-
-
+    return render(request, "account_app/sign_up_companion.html", {"cities": cities, "skills": skills})
 # Sign In for all
 def sign_in_user_view(request):
     if request.method == "POST":
@@ -229,7 +183,7 @@ def edit_beneficiary_profile_view(request: HttpRequest):
         disability_user.disability_type = request.POST.get("disability_type")
         disability_user.gender = request.POST.get("gender")
         disability_user.age = request.POST.get("age")
-        # disability_user.city = request.POST.get("city")         
+        disability_user.city = request.POST.get("city")         
         disability_user.save()
         messages.success(request, "Beneficiary profile updated successfully!")
         return redirect("account_app:profile_beneficiary_view")
