@@ -37,7 +37,7 @@ def sign_up_beneficiary_view(request: HttpRequest):
         age = request.POST.get("age")
         city = request.POST.get("city")
         address = request.POST.get("address")
-        
+
 
         try:
             user = User.objects.create_user(username=username, password=password, role="beneficiary")
@@ -141,7 +141,7 @@ def sign_up_companion_view(request: HttpRequest):
         phone_number = request.POST.get("phone_number")
         gender = request.POST.get("gender")
         age = request.POST.get("age")
-
+        
         try:
             user = User.objects.create_user(username=username, password=password, role="companion")
             user.first_name = first_name
