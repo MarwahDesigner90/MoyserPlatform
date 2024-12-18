@@ -1,14 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpRequest , HttpResponse
 from account_app.models import Companion, Skill ,  DisabilityUser
+from .models import Feedback
 # from .models import Testimonial
 # Create your views here.
 
 def home_view(request:HttpRequest):
     cities=Companion.CITY_CHOICES
     genders=Companion.GENDER_CHOICES
+    feedbacks=Feedback.objects.all()[:3]
 
-    return render(request,"main_app/home.html",{'cities': cities , 'genders': genders})
+    return render(request,"main_app/home.html",{'cities': cities , 'genders': genders , 'feedbacks':feedbacks})
 
 def companions_list_view (request:HttpRequest):
 
@@ -41,7 +43,5 @@ def companions_list_view (request:HttpRequest):
         'search_gender': search_gender,
         'search_disability_type': search_disability_type,
     })
-
-
 
 
