@@ -10,7 +10,7 @@
     <!-- Font Awesome for Profile Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
 	<nav class="relative px-4 py-4 flex justify-between items-center bg-white">
 		<a class="text-3xl font-bold leading-none" href="#">
@@ -30,7 +30,7 @@
 			<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'main_app:home_view'%}">Home</a></li>
 			<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:companion_list'%}">Find Companion</a></li>
 			{% if request.user.is_authenticated %}
-				{% if user.role == 'beneficiary' and not user.is_staff%}
+				{% if user.role == 'beneficiary' and not user.is_staff %}
 					<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:booking_history_user' %}">Booking History</a></li>
 				{% elif user.role == 'companion' and not user.is_staff %}
 					<li><a class="text-sm text-gray-400 hover:text-sky-600 font-bold" href="{% url 'booking_app:booking_history_companion' %}">Booking History</a></li>
@@ -102,7 +102,7 @@
 
 	</nav>
 
-	<div class="relative overflow-hidden">
+	<div class="relative overflow-hidden flex-grow">
 		<div aria-hidden="true" class="flex absolute -top-96 start-1/2 transform -translate-x-1/2">
 			<div class="bg-gradient-to-tl from-sky-100 via-sky-200 to-sky-100 blur-3xl w-[90rem] h-[50rem] rounded-full origin-top-left -rotate-12 -translate-x-[15rem]"></div>
 		</div>
