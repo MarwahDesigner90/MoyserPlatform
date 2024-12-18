@@ -7,95 +7,18 @@
 {% if messages %}
     <ul>
         {% for message in messages %}
-            <li class="alert alert-danger">{{ message }}</li>
+            <li class="alert alert-danger" style="color: #f44336; font-size: 16px; margin-bottom: 10px;">{{ message }}</li>
         {% endfor %}
     </ul>
 {% endif %} 
-<div class="feedback-container">
-    <h1>Add Feedback for {{ companion.companion.username }}</h1>
+<div class="feedback-container" style="max-width: 600px; margin: 0 auto; padding: 25px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); margin-top: 60px; border: 1px solid #ddd; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+    <h1 style="text-align: center; color: #343a40; font-size: 28px; margin-bottom: 30px; font-family: 'Roboto', sans-serif;">Add Feedback for {{ companion.companion.username }}</h1>
 
-    <form method="post" class="feedback-form">
+    <form method="post" class="feedback-form" style="display: flex; flex-direction: column; gap: 18px;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="submit-button">Submit Feedback</button>
+        <button type="submit" class="submit-button" style="padding: 12px 24px; background-color: #007BFF; color: white; font-size: 16px; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease;">Submit Feedback</button>
     </form>
 </div>
 
-{% endblock %}
-
-{% block extra_css %}
-<style>
-    .feedback-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f4f4f9;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-top: 40px;
-    }
-
-    .feedback-container h1 {
-        text-align: center;
-        color: #333;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .feedback-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .feedback-form input, .feedback-form select, .feedback-form textarea {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .submit-button {
-        padding: 10px 20px;
-        background-color: #007BFF;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
-
-    @media screen and (max-width: 768px) {
-        .feedback-container {
-            padding: 15px;
-        }
-
-        .feedback-container h1 {
-            font-size: 22px;
-        }
-
-        .submit-button {
-            font-size: 14px;
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .feedback-container {
-            padding: 10px;
-        }
-
-        .feedback-container h1 {
-            font-size: 20px;
-        }
-
-        .submit-button {
-            font-size: 12px;
-        }
-    }
-</style>
 {% endblock %}

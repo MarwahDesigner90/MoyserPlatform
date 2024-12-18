@@ -37,7 +37,7 @@ def sign_up_beneficiary_view(request: HttpRequest):
         age = request.POST.get("age")
         city = request.POST.get("city")
         address = request.POST.get("address")
-
+        
 
         try:
             user = User.objects.create_user(username=username, password=password, role="beneficiary")
@@ -124,6 +124,7 @@ def profile_companion_view(request: HttpRequest):
 
 # Sign Up for Companion
 def sign_up_companion_view(request: HttpRequest):
+    
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
         if not username:
