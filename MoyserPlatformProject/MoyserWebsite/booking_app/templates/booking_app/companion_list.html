@@ -45,6 +45,7 @@
             <p><strong>Age:</strong> {{ companion.age }}</p>
             <p><strong>Gender:</strong> {{ companion.gender }}</p>
             
+            
             {% if request.user.disabilityuser %}
                 <!-- Display this button only if the user is a DisabilityUser -->
                 <a href="{% url 'booking_app:book_companion' companion.id %}" class="book-button">
