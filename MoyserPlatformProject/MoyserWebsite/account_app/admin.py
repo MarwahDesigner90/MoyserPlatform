@@ -4,9 +4,9 @@ from .models import User , Skill
 
 class CustomUserAdmin(UserAdmin):
     model = User
-    list_display = ('username', 'email', 'role', 'is_staff', 'is_active')
+    list_display = ('username', 'email', 'role', 'is_staff', 'is_active', 'first_name', 'last_name')
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
+        (None, {'fields': ('username', 'email', 'password', 'first_name', 'last_name')}),
         ('Roles and Permissions', {'fields': ('role', 'is_staff', 'is_superuser')}),
     )
     add_fieldsets = (

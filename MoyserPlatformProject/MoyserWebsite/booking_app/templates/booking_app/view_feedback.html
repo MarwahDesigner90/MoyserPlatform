@@ -4,6 +4,13 @@
 {% block title %}Feedback for {{ companion.companion.username }}{% endblock %}
 
 {% block content %}
+{% if messages %}
+  <div class="alert alert-warning">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
 <div class="feedback-container">
     <h1>Feedback for {{ companion.companion.username }}</h1>
 

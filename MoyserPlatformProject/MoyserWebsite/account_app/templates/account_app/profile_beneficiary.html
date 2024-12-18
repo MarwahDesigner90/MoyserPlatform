@@ -54,10 +54,7 @@
                         <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Disability Type:</p>
                         <p class="text-gray-700 dark:text-gray-300">{{ disability_user.get_disability_type_display }}</p>
                     </div>
-                    <div>
-                        <p class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">City:</p>
-                        <p class="text-gray-700 dark:text-gray-300">{{ disability_user.city }}</p>
-                    </div>
+                    
                 </div>
 
                 <!-- Actions -->
@@ -70,7 +67,7 @@
 
                     <!-- Logout Button -->
                     {% if user.is_authenticated %}
-                    <form action="{% url 'account_app:logout' %}" method="post" class="flex justify-center">
+                    <form action="{% url 'account_app:logout_view' %}" method="post" class="flex justify-center">
                         {% csrf_token %}
                         <button 
                             type="submit" 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account_app.models import Companion
 from django.conf import settings
 
 # Create your models here.
@@ -13,7 +14,7 @@ STATUS_CHOICES = [
 class Booking(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    companion = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="bookings_as_companion")
+    companion = models.ForeignKey(Companion, on_delete=models.CASCADE, related_name="bookings_as_companion")
     booking_date_time = models.DateTimeField()
     end_booking_date_time = models.DateTimeField(null=True, blank=True)
     address = models.CharField(max_length=255)

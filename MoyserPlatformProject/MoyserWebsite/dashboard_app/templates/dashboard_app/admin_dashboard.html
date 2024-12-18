@@ -1,104 +1,52 @@
 {% extends "main_app/base.html" %}
-{% load static %}
-{% block title %}Dashboard{% endblock %}
-{% block content %}
-<div class="flex pt-0">
-    <!-- Sidebar -->
-    <div class="w-40 bg-sky-700 text-white min-h-screen">
-        <div class="p-0">
-            <h2 class="text-2xl font-semibold">Dashboard</h2>
-            <ul class="mt-2">
-                <li>
-                    <a href="#companions" class="block py-2 px-4 hover:bg-sky-600">
-                        Companions
-                    </a>
-                </li>
-                <li>
-                    <a href="#settings" class="block py-2 px-4 hover:bg-sky-600">
-                        Settings
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="flex-2 p-0 bg-sky-100">
-        <!-- Dashboard Box -->
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <!-- Companions Section -->
-            <section id="companions">
-                <h2 class="text-2xl font-semibold mb-4">Companions List</h2>
-                <div class="flex justify-between mb-4">
-                    <!-- Add Companion Button -->
-                    <a href="#" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-                        Add New Companion
-                    </a>
-                    <!-- Search Input -->
-                    <input type="text" name="search" placeholder="Search..." class="px-4 py-2 border rounded">
-                </div>
-                <!-- Companions Table -->
-                <table class="min-w-full bg-white border">
-                    <thead>
-                        <tr class="bg-sky-200">
-                            <th class="py-2 px-4 border-b">Image</th>
-                            <th class="py-2 px-4 border-b">Companion Name</th>
-                            <th class="py-2 px-4 border-b">Username</th>
-                            <th class="py-2 px-4 border-b">Rent per Hour</th>
-                            <th class="py-2 px-4 border-b">Phone Number</th>
-                            <th class="py-2 px-4 border-b">Certificate</th>
-                            <th class="py-2 px-4 border-b">Skills</th>
-                            <th class="py-2 px-4 border-b">Email</th>
-                            <th class="py-2 px-4 border-b">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for companion in companions %}
-                        <tr>
-                            <td class="py-2 px-4 border-b">
-                                <img src="{{ companion.image.url }}" alt="Image" class="w-16 h-16 rounded-full">
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {{ companion.companion.first_name }} {{ companion.companion.last_name }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {{ companion.companion.username }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                ${{ companion.hour_rent }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {{ companion.phone_number }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {% if companion.certification %}
-                                    <a href="{{ companion.certification.url }}" target="_blank" class="text-blue-600 hover:underline">
-                                        View Certificate
-                                    </a>
-                                {% else %}
-                                    No Certificate
-                                {% endif %}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {{ companion.skills.all|join:", " }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                {{ companion.companion.email }}
-                            </td>
-                            <td class="py-2 px-4 border-b">
-                                <a href="#" class="text-white rounded-full p-2 bg-blue-500 hover:bg-blue-600">
-                                    Edit
-                                </a>
-                                <a href="#" class="ml-4 text-white rounded-full p-2 bg-red-500 hover:bg-red-600">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    </div>
+{% block content %}
+<h2 style="text-align: center; font-size: 2em; font-weight: bold; color: #4CAF50; margin-bottom: 30px;">Companions List</h2>
+<div>
+    <table style="background-color: #f9f9f9; width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Companion Name</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Username</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Rent per Hour</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Phone Number</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Certificate</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Skills</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Email</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Availability</th>
+                <th style="padding: 12px; text-align: left; border: 1px solid #ddd; background-color: #4CAF50; color: white;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for companion in companions %}
+            <tr>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.companion.first_name }} {{ companion.companion.last_name }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.companion.username }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">${{ companion.hour_rent }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.phone_number }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">
+                    {% if companion.certification %}
+                        <a href="{{ companion.certification.url }}" style="color: #007bff; text-decoration: none;">View Certificate</a>
+                    {% else %}
+                        No Certificate
+                    {% endif %}
+                </td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.skills.all|join:", " }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">{{ companion.companion.email }}</td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">
+                    {% if companion.availability %}
+                        Available
+                    {% else %}
+                        Not Available
+                    {% endif %}
+                </td>
+                <td style="padding: 12px; text-align: left; border: 1px solid #ddd;">
+                    <a href="{% url 'dashboard_app:edit_companion' companion.id %}" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 5px; font-size: 12px;">Edit</a>
+                    <a href="{% url 'dashboard_app:delete_companion' companion.id %}" style="text-decoration: none; color: white; background-color: #dc3545; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-left: 5px;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

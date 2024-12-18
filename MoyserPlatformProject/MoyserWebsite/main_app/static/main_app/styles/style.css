@@ -644,3 +644,63 @@ h1 {
         padding: 8px 15px;
     }
 }
+
+
+
+
+
+
+/* Edit Companion Form Styles */
+.edit-companion-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-companion-form h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.edit-companion-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.edit-companion-form input, .edit-companion-form select, .edit-companion-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-companion-form .submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-companion-form .submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Edit Companion Heading Styles */
+.edit-companion-heading {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+}
