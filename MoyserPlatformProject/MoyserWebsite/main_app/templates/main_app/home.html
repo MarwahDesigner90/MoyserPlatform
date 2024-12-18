@@ -14,43 +14,83 @@
   </div>
 </div>
 
-<!-- Filter Engine -->
-<div class="mt-10 p-8 rounded-full bg-sky-600 shadow-xl shadow-sky-300 border border-sky-900">
+<div class="mt-10 p-8 rounded-full bg-sky-700 shadow-xl shadow-sky-300 border border-sky-900">
   <h2 class="text-2xl font-semibold text-white text-center">Find Your Companion</h2>
-  <form method="get" action="{% url 'booking_app:companion_list' %}" class="mt-5 flex flex-col sm:flex-row justify-center items-center gap-4">
-
-    <div class="flex flex-col items-center">
+  <form method="get" action="{% url 'booking_app:companion_list' %}" class="mt-5 flex flex-col items-center"> 
+<div class="flex flex-row items-center gap-12">
+    <div class="flex flex-row items-center gap-2 ">
       <label for="city" class="text-white">City:</label>
       <select id="city" name="city" class="mt-1 rounded-md p-2">
-        <option value="">Any City</option>  <!-- Default option -->
+        <option value="">Any City</option>  
         {% for value, key in cities %}
         <option value="{{ value }}" {% if search_city == value %}selected{% endif %}>{{ key }}</option>
         {% endfor %}
       </select>
     </div>
 
-    <div class="flex flex-col items-center">
+    <div class="flex flex-row items-center  gap-2 ">
       <label for="gender" class="text-white">Gender:</label>
       <select id="gender" name="gender" class="mt-1 rounded-md p-2">
-        <option value="">Select your gender</option>  <!-- Default option -->
+        <option value="">Select your gender</option>  
         {% for value, label in genders %}
         <option value="{{ value }}" {% if search_gender == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
       </select>
     </div>
+    </div>
     <button type="submit" class="mt-4 bg-amber-400 text-white rounded-full py-2 px-4 hover:bg-sky-900 transition duration-200">
       Find Companions
     </button>
-   
   </form>
 </div>
 
-<!--Heads up! 👋 This component comes with some `rtl` classes. Please remove them if they are not needed in your project.-->
+<div class="bg-sky-500 w-full flex justify-center items-center flex-col gap-y-6 mt-10 rounded-lg border border-sky-900">
+  <h1 class="text-4xl text-white font-bold mt-10">The main feature that the platform supports:</h1>
+  <p class="text-white text-lg py-8 px-32 text-justify text-start mb-12 ">
+    Moyser platform is committed to providing service providers for people with special needs who find it difficult to move around in public and government places. The platform is shared by a group of experienced Saudi youth qualified with certificates in sign language and dealing with the blind, in addition to the financial return for the transportation services provided by the platform to companions. Moyser platform seeks to enhance comfort, safety, community participation and integration of people with special needs into society in support of the principle of inclusiveness and in line with Vision 2030 with ease and simplicity.
+  </p>
+
+  <div class="flex justify-center items-center mb-20 ml-8 mr-8 ">
+      <div class="grid grid-cols-4 gap-4 ">
+          <div class="flex flex-col items-center ">
+              <div class="flex justify-center items-center bg-white rounded-full w-20 h-20 mb-4">
+                  <img src="{%static 'images/availability.png'%}" alt="" class="rounded-full w-16 h-16" />
+              </div>
+              <h3 class="font-bold text-lg mb-8 text-center text-white">Availability</h3>
+              <p class="text-white text-sm text-center"></p>
+          </div>
+
+          <div class="flex flex-col items-center">
+              <div class="flex justify-center items-center bg-white rounded-full w-20 h-20 mb-4">
+                  <img src="{%static 'images/community6.jpeg'%}" alt="" class="rounded-full w-20 h-20" />
+              </div>
+              <h3 class="font-bold text-lg mb-8 text-center text-white">Community Integration</h3>
+              <p class="text-white text-sm  text-center">من خلال اختبارات التوجيه، تساعد المنصة المستخدمين في تحديد ميولهم المهنية وتوجيههم نحو الخيارات المناسبة.</p>
+          </div>
+
+          <div class="flex flex-col items-center">
+              <div class="flex justify-center items-center bg-white rounded-full w-20 h-20 mb-4">
+                  <img src="{%static 'images/easyaccess.png'%}" alt="" class="rounded-full w-16 h-16" />
+              </div>
+              <h3 class="font-bold text-lg mb-8 text-center text-white">Easy Access</h3>
+              <p class="text-white text-sm  text-center">توفر المنصة موارد تعليمية متنوعة ودورات تدريبية تساعد المستخدمين في تطوير مهاراتهم ومعرفتهم.</p>
+          </div>
+
+          <div class="flex flex-col items-center">
+              <div class="flex justify-center items-center bg-white rounded-full w-20 h-20 mb-4">
+                  <img src="{%static 'images/safety.png'%}" alt="" class="rounded-full w-16 h-16" />
+              </div>
+              <h3 class="font-bold text-lg mb-8 text-center text-white">Sçafety and Reliability</h3>
+              <p class="text-white text-sm  text-center">من خلال المنصة، يمكن للمستخدمين التواصل مع مستشارين محترفين ورواد أعمال للحصول على نصائح وإرشادات قيمة.</p>
+          </div>
+      </div>
+  </div>
+</div>
 
 <link href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css" rel="stylesheet" />
 
 
-<section class="bg-white mt-10 ">
+<section class="bg-white mt-10  ">
   <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
     <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
       Read trusted reviews from our customers
