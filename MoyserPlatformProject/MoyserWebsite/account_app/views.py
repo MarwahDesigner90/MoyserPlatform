@@ -124,12 +124,13 @@ def profile_companion_view(request: HttpRequest):
 
 # Sign Up for Companion
 def sign_up_companion_view(request: HttpRequest):
+    skills = Skill.objects.all()
     
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
         if not username:
             messages.error(request, "Username is required.")
-            return render(request, "account_app/sign_up_companion.html")
+            return render(request, "account_app/sign_up_companion.html",{'skills':skills})
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
         password = request.POST.get("password")
@@ -164,9 +165,8 @@ def sign_up_companion_view(request: HttpRequest):
         except Exception as e:
             print(e)
             messages.error(request, f"Error creating account: {e}")
-            return render(request, "account_app/sign_up_companion.html")
+            return render(request, "account_app/sign_up_companion.html",{'skills':skills})
 
-    skills = Skill.objects.all()
     return render(request, "account_app/sign_up_companion.html", {"skills": skills})
 
 
